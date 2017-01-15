@@ -22,6 +22,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'flazz/vim-colorschemes'
 
 " tmux
 Plugin 'benmills/vimux'
@@ -43,6 +44,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " choose airline theme
+" let g:airline_theme='simple' 
 
 syntax enable
 colorscheme moriarty
