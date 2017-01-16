@@ -5,7 +5,7 @@ export ZSH=/Users/guihaoliang/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -15,10 +15,10 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=30
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -49,7 +49,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx zsh-autosuggestions)
+# plugins=(autojump)
 
 # User configuration
 
@@ -83,7 +83,25 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
+############### syntax-highlighters #################
+# load auto-suggestion and syntax-highlighting will lead to crash
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets) 
+#
+# To define styles for nested brackets up to level 4
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=red,bold'
+#
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[function]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=red,bold'
+# To disable highlighting of globbing expressions
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 
 ################## personal config ##################
 # alias
@@ -97,10 +115,15 @@ alias dirs='dirs -v '
 alias which='which -a '
 # use vim that installed by homebrew
 # alias vim='/usr/local/bin/vim '
+# add vertical list for brew
+alias brews='brew list -1'
+# grep
+alias grep='grep --color'
+# edit .zshrc
+alias zshrc='vim $HOME/.zshrc'
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
-
 
 ################## ENVIRONMENT ################## 
 # go lang home dir
@@ -112,9 +135,6 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
 # java leet code location
 export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
 # export git=$git/usr/lcoal/Cellar/git/2.6.0/bin/git
-
-# Postgres
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 # Set up python version.
 export VIRTUALENV_PYTHON=/usr/local/bin/python3
@@ -129,5 +149,29 @@ export VIRTUALENV_PYTHON=/usr/local/bin/python3
 export CPP=~/Desktop/Gui++
 
 # set up vim playground
-export VP=~/Desktop/VIM_code
+export PV=~/Desktop/VIM_code
 export PATH="/usr/local/sbin:$PATH"
+
+##################  antigen  ###################
+source /usr/local/share/antigen/antigen.zsh
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+# bundles under oh-my-zsh
+antigen bundle git
+antigen bundle tmux
+antigen bundle autojump
+antigen bundle command-not-found
+antigen bundle gradle
+antigen bundle colored-man-pages
+# antigen bundle common-aliases # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
+# third party
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+#
+if [ "$OSTYPE"="darwin16.0" ]; then
+ 	antigen bundle osx
+fi
+#
+antigen theme robbyrussell
+# Tell antigen that you're done.
+antigen apply

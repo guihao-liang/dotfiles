@@ -23,6 +23,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'wincent/command-t'
+Plugin 'terryma/vim-multiple-cursors'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
 " tmux
 Plugin 'benmills/vimux'
@@ -48,6 +54,28 @@ filetype plugin indent on    " required
 
 syntax enable
 colorscheme moriarty
+
+" all sets
 set backspace=indent,eol,start
 set autoindent
+set number linebreak
+set cursorline " underline the line where cursor is in
+set foldmethod=syntax " fold the code
+
+" Search settings
+set hlsearch " highlight all matches of a search
+set incsearch " searches as you type
+
+" key mappings
+nmap <F8> :TagbarToggle<CR>
+"press <fn>+F8
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
