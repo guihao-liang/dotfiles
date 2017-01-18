@@ -121,6 +121,8 @@ alias brews='brew list -1'
 alias grep='grep --color'
 # edit .zshrc
 alias zshrc='vim $HOME/.zshrc'
+# fix the problem that in tmux mode, vim can't find the colorscheme
+alias tmux="tmux -2"
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
@@ -149,7 +151,6 @@ export VIRTUALENV_PYTHON=/usr/local/bin/python3
 export CPP=~/Desktop/Gui++
 
 # set up vim playground
-export PV=~/Desktop/VIM_code
 export PATH="/usr/local/sbin:$PATH"
 
 ##################  antigen  ###################
@@ -158,8 +159,9 @@ source /usr/local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 # bundles under oh-my-zsh
 antigen bundle git
-antigen bundle tmux
+# antigen bundle tmux
 antigen bundle autojump
+antigen bundle zsh_reload
 antigen bundle command-not-found
 antigen bundle gradle
 antigen bundle colored-man-pages
