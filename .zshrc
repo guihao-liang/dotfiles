@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/guihaoliang/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -166,7 +166,11 @@ export PV=~/playground/vim
 export PATH="/usr/local/sbin:$PATH"
 
 ##################  antigen  ###################
-source /usr/local/share/antigen/antigen.zsh
+if [[ "$OSTYPE"="linux-gnu" ]]; then
+	source /usr/share/zsh-antigen/antigen.zsh 
+elif [[ "$OSTYPE"="darwin16.0" ]]; then
+	source /usr/local/share/antigen/antigen.zsh
+fi
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 # bundles under oh-my-zsh
