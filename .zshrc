@@ -107,6 +107,17 @@ ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 # alias
 # displays directory entries that begin with a dot.
 alias l.='ls -d .*'
+alias ls="ls -F"
+# git
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gm="git commit -m"
+alias gc="git checkout"
+alias gpo="git push origin"
+alias gpom="git push -u origin master"
+alias gp="git push"
+#
 # show dirs in current stack.
 alias dirs='dirs -v '
 # activate virtualenv for python development under mkvirtualenv dir.
@@ -148,7 +159,8 @@ export VIRTUALENV_PYTHON=/usr/local/bin/python3
 # source virtualenvwrapper.sh
 # export PROJECT_HOME=~/ENV
 # export WORKON_HOME=~/ENV
-export CPP=~/Desktop/Gui++
+export CPP=~/playground/Gui++
+export PV=~/playground/vim
 
 # set up vim playground
 export PATH="/usr/local/sbin:$PATH"
@@ -177,3 +189,8 @@ fi
 antigen theme robbyrussell
 # Tell antigen that you're done.
 antigen apply
+
+# RVM and ruby, must at the bottom, don’t know why.
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+# Load RVM into a shell session *as a function*
