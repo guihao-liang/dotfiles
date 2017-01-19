@@ -108,7 +108,7 @@ ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 # displays directory entries that begin with a dot.
 alias l.='ls -d .*'
 alias ls="ls -F"
-# git
+# add git
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -119,6 +119,7 @@ alias gpom="git push -u origin master"
 alias gp="git push"
 #
 # show dirs in current stack.
+#
 alias dirs='dirs -v '
 # activate virtualenv for python development under mkvirtualenv dir.
 # alias activate='source ./bin/activate'
