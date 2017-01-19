@@ -108,7 +108,7 @@ ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 # displays directory entries that begin with a dot.
 alias l.='ls -d .*'
 alias ls="ls -F"
-# add git
+# git
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
