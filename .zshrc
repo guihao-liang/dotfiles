@@ -134,7 +134,7 @@ alias grep='grep --color'
 # edit .zshrc
 alias zshrc='vim $HOME/.zshrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
-alias tmux="tmux -2"
+alias tm="tmux -2"
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
@@ -167,9 +167,9 @@ export PV=~/playground/vim
 export PATH="/usr/local/sbin:$PATH"
 
 ##################  antigen  ###################
-if [[ "$OSTYPE"="linux-gnu" ]]; then
+if [[ $OSTYPE == "linux-gnu" ]]; then
 	source /usr/share/zsh-antigen/antigen.zsh 
-elif [[ "$OSTYPE"="darwin16.0" ]]; then
+elif [[ $OSTYPE == "darwin16.0" ]]; then
 	source /usr/local/share/antigen/antigen.zsh
 fi
 # Load the oh-my-zsh's library.
@@ -187,8 +187,8 @@ antigen bundle colored-man-pages
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 #
-if [ "$OSTYPE"="darwin16.0" ]; then
- 	antigen bundle osx
+if [[ $OSTYPE == "darwin16.0" ]]; then
+	antigen bundle osx
 fi
 #
 antigen theme robbyrussell
