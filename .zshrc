@@ -167,6 +167,7 @@ export PV=~/playground/vim
 export PATH="/usr/local/sbin:$PATH"
 
 ##################  antigen  ###################
+# [[ and [ are different.
 if [[ $OSTYPE == "linux-gnu" ]]; then
 	source /usr/share/zsh-antigen/antigen.zsh 
 elif [[ $OSTYPE == "darwin16.0" ]]; then
