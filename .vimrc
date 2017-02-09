@@ -34,6 +34,10 @@ Plugin 'honza/vim-snippets'
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
 
+" erlang
+Plugin 'jimenezrick/vimerl'
+" Plugin 'tpope/vim-pathogen'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required

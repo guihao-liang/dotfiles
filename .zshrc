@@ -133,8 +133,12 @@ alias brews='brew list -1'
 alias grep='grep --color'
 # edit .zshrc
 alias zshrc='vim $HOME/.zshrc'
+# edit .vimrc
+alias vimrc='vim $HOME/.vimrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
 alias tm="tmux -2"
+# emacs no window server
+alias em="emcas -nw"
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
