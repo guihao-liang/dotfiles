@@ -25,6 +25,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'wincent/command-t'
 Plugin 'terryma/vim-multiple-cursors'
+" auto add delimiter
+Plugin 'Raimondi/delimitMate'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -36,6 +38,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 " erlang
 Plugin 'jimenezrick/vimerl'
+" C++
+Plugin 'octol/vim-cpp-enhanced-highlight'
 " Plugin 'tpope/vim-pathogen'
 
 " All of your Plugins must be added before the following line
