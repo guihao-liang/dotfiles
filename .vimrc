@@ -61,7 +61,10 @@ filetype plugin indent on    " required
 " let g:airline_theme='simple' 
 
 syntax enable
-colorscheme moriarty
+
+if $USER == "GuihaoLiang"
+	colorscheme moriarty
+endif
 
 " all sets
 set backspace=indent,eol,start
