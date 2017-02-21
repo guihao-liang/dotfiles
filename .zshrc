@@ -144,32 +144,34 @@ alias em="emcas -nw"
 set -K
 
 ################## ENVIRONMENT ################## 
-# go lang home dir
-export GOPATH=$HOME/goToWork
-# homebrew home dir
-export HOMEBREW=/usr/local/Cellar/
-# java installation dir
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
-# java leet code location
-export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
-# export git=$git/usr/lcoal/Cellar/git/2.6.0/bin/git
+if [[ $USER == "GuihaoLiang" ]]; then
+	# go lang home dir
+	export GOPATH=$HOME/goToWork
+	# homebrew home dir
+	export HOMEBREW=/usr/local/Cellar/
+	# java installation dir
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
+	# java leet code location
+	export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
+	# export git=$git/usr/lcoal/Cellar/git/2.6.0/bin/git
 
-# Set up python version.
-export VIRTUALENV_PYTHON=/usr/local/bin/python3
+	# Set up python version.
+	export VIRTUALENV_PYTHON=/usr/local/bin/python3
 
-# OPAM configuration
-. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+	# OPAM configuration
+	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# virtualenvwrapper
-# source virtualenvwrapper.sh
-# export PROJECT_HOME=~/ENV
-# export WORKON_HOME=~/ENV
-export CPP=~/playground/Gui++
-export PV=~/playground/vim
+	# virtualenvwrapper
+	# source virtualenvwrapper.sh
+	# export PROJECT_HOME=~/ENV
+	# export WORKON_HOME=~/ENV
+	export CPP=~/playground/Gui++
+	export PV=~/playground/vim
 
-# set up vim playground
-export PATH="/usr/local/sbin:$PATH"
-
+	# set up vim playground
+	export PATH="/usr/local/sbin:$PATH"
+#elif [[ $USER == "guihaol" ]]; then
+fi
 ##################  antigen  ###################
 # [[ and [ are different.
 if [[ $OSTYPE == "linux-gnu" ]]; then
