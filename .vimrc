@@ -72,6 +72,7 @@ set autoindent
 set number linebreak
 set cursorline " underline the line where cursor is in
 set foldmethod=syntax " fold the code
+set colorcolumn=81
 
 " Search settings
 set hlsearch " highlight all matches of a search
