@@ -145,6 +145,9 @@ alias em="emcas -nw"
 set -K
 
 ################## ENVIRONMENT ################## 
+# Homebrew required, brew doctor to see more info
+export PATH="/usr/local/sbin:$PATH"
+
 if [[ $USER == "GuihaoLiang" ]]; then
 	# go lang home dir
 	export GOPATH=$HOME/goToWork
@@ -169,8 +172,6 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	export CPP=~/playground/Gui++
 	export PV=~/playground/vim
 
-	# set up vim playground
-	export PATH="/usr/local/sbin:$PATH"
 #elif [[ $USER == "guihaol" ]]; then
 fi
 ##################  antigen  ###################

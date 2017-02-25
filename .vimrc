@@ -31,7 +31,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-
+" dash integration
+Plugin 'rizzatti/dash.vim'
 " tmux
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
