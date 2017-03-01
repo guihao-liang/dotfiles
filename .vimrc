@@ -63,7 +63,8 @@ filetype plugin indent on    " required
 
 syntax enable
 
-if $USER == "GuihaoLiang"
+" echo $HOME."/.vim/colors/moriarty.vim"
+if filereadable($HOME."/.vim/colors/moriarty.vim")
 	colorscheme moriarty
 endif
 

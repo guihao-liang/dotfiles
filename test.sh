@@ -1,3 +1,5 @@
+#!/bin/bash
+
 confirm_install() {
 	
 	read -p "Install $1? [y/n]: " $ans
@@ -9,17 +11,25 @@ confirm_install() {
 		exit 35
 	fi
 }
-shopt -s dotglob
-cd $HOME/dotfiles
-DOT="$HOME/dotfiles"
-echo "change to $DOT"
-for f in *
-do 
-	if [[ -f $f && $f =~ ^\.+ ]]; then
-		confirm "link" $f
+
+echo $(uname -v)
+if [[ "$(uname -v)" =~ (Debian)+ ]]; then
+	echo Debian
+fi
+
+# shopt -s dotglob
+# cd $HOME/dotfiles
+# DOT="$HOME/dotfiles"
+# echo "change to $DOT"
+# for f in *
+# do 
+	# if [[ -f $f && $f =~ ^\.+ ]]; then
+		# confirm_install "link" $f
 		# if [[ -e $HOME/$f ]];then
 			# rm $HOME/$f
 		# fi
 		# ln -s $DOT/$f $HOME/$f
-	fi
-done
+	# fi
+# done
+
+
