@@ -207,5 +207,7 @@ antigen apply
 
 # RVM and ruby, must at the bottom, don’t know why.
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+if [[ $USER == "GuihaoLiang" ]]; then
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+fi
 # Load RVM into a shell session *as a function*
