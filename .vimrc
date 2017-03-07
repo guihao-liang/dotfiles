@@ -72,9 +72,13 @@ endif
 set backspace=indent,eol,start
 set autoindent
 set number linebreak
-set cursorline " underline the line where cursor is in
 set foldmethod=syntax " fold the code
 set colorcolumn=81
+" hi colorcolumn ctermbg=Red guibg=LightBlue
+
+" set cursor line
+set cursorline " underline the line where cursor is in
+hi CursorLine cterm=underline gui=underline " ctermfg=White
 
 " Search settings
 set hlsearch " highlight all matches of a search

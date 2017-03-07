@@ -211,3 +211,6 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 fi
 # Load RVM into a shell session *as a function*
+
+# load .bashrc is there's any. Failed due to incompatibility.
+# [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'

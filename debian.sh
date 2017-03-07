@@ -21,6 +21,7 @@ apt_get_update_upgrade () {
 	sudo apt-get update
 	sudo apt-get upgrade
 }
+
 set +e
 
 echo "preparation:
@@ -52,6 +53,9 @@ confirm_install "zsh"
 # zsh pkg manager
 confirm_install "zsh-antigen"
 
+# vim-nox with script language support
+confirm_install "vim-nox"
+
 # vim Vundle
 echo "Installing Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -65,7 +69,7 @@ cd $HOME/dotfiles
 echo "change to $HOME/dotfiles/"
 for f in *
 do 
-	if [[ -f $f && $f =~ ^\.+ ]]; then
+	if [[ -f $f && $f =~ ^\.+ && $f != ".bashrc" ]]; then
 		echo "link $f? [Y/N]"
 		read ans
 		if [[ -z $ans || $ans == "y" || $ans == "Y" ]]; then
