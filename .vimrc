@@ -61,6 +61,7 @@ filetype plugin indent on    " required
 " choose airline theme
 " let g:airline_theme='simple' 
 
+" vim settings of Guihao Liang
 syntax enable
 
 " echo $HOME."/.vim/colors/moriarty.vim"
