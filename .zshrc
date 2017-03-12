@@ -194,6 +194,7 @@ antigen bundle gradle
 antigen bundle colored-man-pages
 # antigen bundle common-aliases # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
 # third party
+antigen bundle rupa/z
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 #
