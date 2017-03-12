@@ -186,6 +186,7 @@ antigen use oh-my-zsh
 # bundles under oh-my-zsh
 antigen bundle git
 # antigen bundle tmux
+# antigen bundle tmuxinator
 antigen bundle autojump
 antigen bundle zsh_reload
 antigen bundle command-not-found
