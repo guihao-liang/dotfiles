@@ -188,6 +188,7 @@ antigen use oh-my-zsh
 # bundles under oh-my-zsh
 antigen bundle git
 # antigen bundle tmux
+# antigen bundle tmuxinator
 antigen bundle autojump
 antigen bundle zsh_reload
 antigen bundle command-not-found
@@ -195,6 +196,7 @@ antigen bundle gradle
 antigen bundle colored-man-pages
 # antigen bundle common-aliases # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
 # third party
+antigen bundle rupa/z
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 #
