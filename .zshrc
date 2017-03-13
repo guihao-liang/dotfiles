@@ -136,6 +136,8 @@ alias grep='grep --color'
 alias zshrc='vim $HOME/.zshrc'
 # edit .vimrc
 alias vimrc='vim $HOME/.vimrc'
+# edit .bashrc
+alias bashrc='vim $HOME/.bashrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
 alias tm="tmux -2"
 # emacs no window server

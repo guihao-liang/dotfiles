@@ -17,12 +17,14 @@ Plugin 'valloric/youcompleteme'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" comment code with cmd gcc
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
+" fuzzy searching for files
 Plugin 'wincent/command-t'
 Plugin 'terryma/vim-multiple-cursors'
 " auto add delimiter
@@ -72,8 +74,11 @@ endif
 " all sets
 set backspace=indent,eol,start
 set autoindent
+set tabstop=4
+set shiftwidth=4
 set number linebreak
-set foldmethod=syntax " fold the code
+" fold the code
+set foldmethod=syntax
 set colorcolumn=81
 " hi colorcolumn ctermbg=Red guibg=LightBlue
 
