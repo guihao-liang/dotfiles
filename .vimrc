@@ -17,7 +17,7 @@ Plugin 'valloric/youcompleteme'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" comment code with cmd gcc
+" comment code with cmd gcc or gc
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
