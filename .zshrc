@@ -182,6 +182,15 @@ elif [[ $HOST == "guihaol2" ]]; then
 	# 	eval `ssh-agent -s`
 	# 	ssh-add $home/.ssh/guihaol2_rsa
 	# fi
+	# reuse the same socket
+	# find SSH_AGENT_PID by ps -aux | grep ssh-agent
+	# "ssh-agent -s" is what you want for the socket 
+	if [[ ! -S ~/.ssh/ssh_auth_sock ]]; then
+		eval `ssh-agent -s`
+		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+	fi
+	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+	ssh-add -l > /dev/null || ssh-add ~/.ssh/guihaol2_rsa
 	export WORKON_HOME=$HOME/.virtualenvs
 	export PROJECT_HOME=$HOME/hotpot
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
