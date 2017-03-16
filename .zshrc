@@ -175,11 +175,11 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	export PV=~/playground/vim
 
 elif [[ $HOST == "guihaol2" ]]; then
-	# check whether ssh-agent is started
-	if [ -z "$SSH_AUTH_SOCK" ] ; then
-		eval `ssh-agent -s`
-		ssh-add $HOME/.ssh/guihaol2_rsa
-	fi
+	# # check whether ssh-agent is started
+	# if [ -z "$ssh_auth_sock" ] ; then
+	# 	eval `ssh-agent -s`
+	# 	ssh-add $home/.ssh/guihaol2_rsa
+	# fi
 	export WORKON_HOME=$HOME/.virtualenvs
 	export PROJECT_HOME=$HOME/hotpot
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
