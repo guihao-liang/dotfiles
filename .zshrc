@@ -174,7 +174,11 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	export CPP=~/playground/Gui++
 	export PV=~/playground/vim
 
-#elif [[ $USER == "guihaol" ]]; then
+elif [[ $HOST == "guihaol2" ]]; then
+	export WORKON_HOME=$HOME/.virtualenvs
+	export PROJECT_HOME=$HOME/hotpot
+	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+	source /usr/local/bin/virtualenvwrapper.sh
 fi
 ##################  antigen  ###################
 # [[ and [ are different.
