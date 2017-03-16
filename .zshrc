@@ -132,6 +132,8 @@ alias which='which -a '
 alias brews='brew list -1'
 # grep
 alias grep='grep --color'
+# change to dotfiles
+alias dot='cd ~/dotfiles'
 # edit .zshrc
 alias zshrc='vim $HOME/.zshrc'
 # edit .vimrc
