@@ -215,6 +215,7 @@ antigen bundle zsh_reload
 antigen bundle command-not-found
 antigen bundle gradle
 antigen bundle colored-man-pages
+antigen bundle fancy-ctrl-z
 # antigen bundle common-aliases # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
 # third party
 antigen bundle rupa/z
