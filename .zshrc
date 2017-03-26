@@ -191,6 +191,7 @@ elif [[ $HOST == "guihaol2" ]]; then
 	fi
 	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 	ssh-add -l > /dev/null || ssh-add ~/.ssh/guihaol2_rsa
+	export JAVA_HOME='/usr/lib/jvm/jdk-8-oracle-x64'
 	export WORKON_HOME=$HOME/.virtualenvs
 	export PROJECT_HOME=$HOME/hotpot
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
