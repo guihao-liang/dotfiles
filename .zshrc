@@ -142,6 +142,8 @@ alias vimrc='vim $HOME/.vimrc'
 alias bashrc='vim $HOME/.bashrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
 alias tm="tmux -2"
+alias tmat='tmux attach -t'
+alias tmns='tmux new -s'
 # emacs no window server
 alias em="emcas -nw"
 ################## ZSH FUNTIONALITY #############
