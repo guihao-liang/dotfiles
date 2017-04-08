@@ -66,6 +66,11 @@ filetype plugin indent on    " required
 " vim settings of Guihao Liang
 syntax enable
 
+" practical vim
+" filepath of active buffer but removing the filename.
+" map %% to %:h.
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' :'%%'
+
 " echo $HOME."/.vim/colors/moriarty.vim"
 if filereadable($HOME."/.vim/colors/moriarty.vim")
 	colorscheme moriarty

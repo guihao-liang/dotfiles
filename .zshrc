@@ -146,6 +146,10 @@ alias tmat='tmux attach -t'
 alias tmns='tmux new -s'
 # emacs no window server
 alias em="emcas -nw"
+# short for make, mk is already taken
+alias m='make'
+# check background jobs
+alias j="jobs"
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
