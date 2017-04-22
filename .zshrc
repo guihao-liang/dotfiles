@@ -148,6 +148,9 @@ alias tmns='tmux new -s'
 alias em="emcas -nw"
 # short for make, mk is already taken
 alias m='make'
+alias mc='make clean'
+alias mr='make run'
+alias mt='make test'
 # check background jobs
 alias j="jobs"
 ################## ZSH FUNTIONALITY #############
