@@ -71,6 +71,9 @@ syntax enable
 " map %% to %:h.
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' :'%%'
 
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 " echo $HOME."/.vim/colors/moriarty.vim"
 if filereadable($HOME."/.vim/colors/moriarty.vim")
 	colorscheme moriarty
@@ -115,7 +118,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exe = 'python3'
-let g:syntastic_python_checkers = ['python', 'py3kwarn']
+" let g:syntastic_python_checkers = ['python', 'py3kwarn']

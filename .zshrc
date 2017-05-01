@@ -148,11 +148,14 @@ alias tmns='tmux new -s'
 alias em="emcas -nw"
 # short for make, mk is already taken
 alias m='make'
+alias m2='make 2> /dev/null'
 alias mc='make clean'
 alias mr='make run'
 alias mt='make test'
 # check background jobs
 alias j="jobs"
+# vim
+alias vr='vim -m' 
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
