@@ -5,8 +5,9 @@
 2. Clone vim
 > git clone https://github.com/vim/vim.git
 
-3. Under the vim repo, run `./configure --help` to view more options.
-	Sample config on my Debian box:
+3. Under the vim repo, run `./configure --help` to view more options. 
+
+Sample config on my Debian box:
 ```./configure --with-features=huge \
 			--enable-multibyte \
 			--enable-python3interp=yes \
@@ -22,4 +23,5 @@
 
 4. Use checkinstall to manage installation easily.
 > sudo checkinstall
+
 > dpkg -r vim
