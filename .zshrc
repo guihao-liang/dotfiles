@@ -156,6 +156,7 @@ alias mt='make test'
 alias j="jobs"
 # vim
 alias vr='vim -m' 
+alias ve='vim -x'
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
