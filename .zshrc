@@ -156,13 +156,10 @@ alias mt='make test'
 alias j="jobs"
 # vim
 alias vr='vim -m' 
-<<<<<<< HEAD
 # valgrind
 alias vl='valgrind --leak-check=yes'
 alias vlv='valgrind --leak-check=yes --track-origins=yes'
-=======
 alias ve='vim -x'
->>>>>>> 123bee18aaaa8b396ef0ae06e47e6abe66c71bd0
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
