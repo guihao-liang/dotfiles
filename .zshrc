@@ -168,6 +168,7 @@ set -K
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
 
+# my mac
 if [[ $USER == "GuihaoLiang" ]]; then
 	# go lang home dir
 	export GOPATH=$HOME/goToWork
@@ -178,9 +179,12 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	# java leet code location
 	export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
 	# export git=$git/usr/lcoal/Cellar/git/2.6.0/bin/git
-
+	export WORKON_HOME=$HOME/.virtualenvs
 	# Set up python version.
 	export VIRTUALENV_PYTHON=/usr/local/bin/python3
+	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+	export PROJECT_HOME=$HOME/playground
+	source /usr/local/bin/virtualenvwrapper.sh
 
 	# OPAM configuration
 	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
