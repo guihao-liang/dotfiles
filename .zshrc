@@ -247,12 +247,10 @@ antigen theme
 # Tell antigen that you're done.
 antigen apply
 
-# RVM and ruby, must at the bottom, don’t know why.
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-if [[ $USER == "GuihaoLiang" ]]; then
-	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-fi
-# Load RVM into a shell session *as a function*
-
 # load .bashrc is there's any. Failed due to incompatibility.
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
+
+# append pyenv script at last
+if which pyenv > /dev/null; then
+    eval "$(pyenv init -)";
+fi
