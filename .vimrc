@@ -38,12 +38,14 @@ Plugin 'rizzatti/dash.vim'
 " tmux
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
+" markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " erlang
 Plugin 'jimenezrick/vimerl'
 " C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
-" Plugin 'tpope/vim-pathogen'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -126,3 +128,6 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 " let g:syntastic_python_python_exe = 'python3'
 " let g:syntastic_python_checkers = ['python', 'py3kwarn']
+
+" markdown plugin
+let g:vim_markdown_folding_disabled = 1
