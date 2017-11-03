@@ -160,6 +160,8 @@ alias vr='vim -m'
 alias vl='valgrind --leak-check=yes'
 alias vlv='valgrind --leak-check=yes --track-origins=yes'
 alias ve='vim -x'
+# neo vim
+alias nv='nvim'
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
