@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-  export EDITOR='vim'
+export EDITOR='nvim'
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
@@ -155,14 +155,11 @@ alias mr='make run'
 alias mt='make test'
 # check background jobs
 alias j="jobs"
-# vim
-alias vr='vim -m' 
-# valgrind
-alias vl='valgrind --leak-check=yes'
-alias vlv='valgrind --leak-check=yes --track-origins=yes'
-alias ve='vim -x'
 # neo vim
-alias nv='nvim'
+alias vi='nvim'
+# vim
+alias vr='vi -m' 
+alias ve='vi -x'
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
