@@ -102,7 +102,7 @@ set hlsearch " highlight all matches of a search
 set incsearch " searches as you type
 
 " Set encryption method
-set cm=blowfish2
+" set cm=blowfish2
 
 " key mappings
 nmap <F8> :TagbarToggle<CR>

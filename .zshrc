@@ -138,6 +138,7 @@ alias dot='cd ~/dotfiles'
 alias zshrc='vim $HOME/.zshrc'
 # edit .vimrc
 alias vimrc='vim $HOME/.vimrc'
+alias nvimrc='nvim $HOME/.config/nvim/init.vim'
 # edit .bashrc
 alias bashrc='vim $HOME/.bashrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
