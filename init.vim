@@ -24,21 +24,21 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add($HOME.'/.config/nvim/repos/github.com/Shougo/dein.vim')
 
     " Add or remove plugins here:
-    call dein#add('Shougo/neosnippet.vim')
-    call dein#add('Shougo/neosnippet-snippets')
-    call dein#add('Shougo/deoplete.nvim')
-
+    call dein#add('bling/vim-airline')
+    call dein#add('christoomey/vim-tmux-navigator')
+    call dein#add('Konfekt/FastFold')
     call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
     call dein#add('scrooloose/syntastic')
-
-    call dein#add('christoomey/vim-tmux-navigator')
-
-    call dein#add('bling/vim-airline')
-
+    call dein#add('Shougo/neosnippet.vim')
+    call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('Shougo/neopairs.vim')
+    call dein#add('Shougo/context_filetype.vim')
+    call dein#add('Shougo/deoplete.nvim')
     call dein#add('tpope/vim-commentary')
     call dein#add('tpope/vim-sensible')
     call dein#add('tpope/vim-repeat')
     call dein#add('tpope/vim-surround')
+    call dein#add('wellle/tmux-complete.vim')
 
     " code snippets
     call dein#add('honza/vim-snippets')
@@ -68,6 +68,13 @@ endif
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#min_pattern_length = 3
+" Use tmux-complete
+let g:tmuxcomplete#trigger = ''
+
+" Use tab for auto complete
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " Searching
 set ignorecase
