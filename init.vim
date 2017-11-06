@@ -33,10 +33,6 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neopairs.vim')
     call dein#add('Shougo/deoplete.nvim')
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
     call dein#add('Shougo/context_filetype.vim')
     call dein#add('tpope/vim-commentary')
     call dein#add('tpope/vim-sensible')
@@ -52,7 +48,7 @@ if dein#load_state($HOME.'/.config/nvim')
 
     " lang specific
     call dein#add('fatih/vim-go', { 'on_ft': 'go'})
-    call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
+    " call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
 
     " Required:
@@ -77,8 +73,11 @@ let g:deoplete#min_pattern_length = 3
 " Use tmux-complete
 let g:tmuxcomplete#trigger = ''
 
-" Use tab for auto complete
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" neosnippet setting
+imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <C-f>  <Plug>(neosnippet_expand_or_jump)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+	 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " Searching
 set ignorecase
