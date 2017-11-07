@@ -48,7 +48,8 @@ if dein#load_state($HOME.'/.config/nvim')
 
     " lang specific
     call dein#add('fatih/vim-go', { 'on_ft': 'go'})
-    " call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
+    call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
+    call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
 
     " Required:
@@ -72,6 +73,8 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#min_pattern_length = 3
 " Use tmux-complete
 let g:tmuxcomplete#trigger = ''
+" Python-mode autocompletion conflict with deoplete
+let g:pymode_rope_completion = 0 
 
 " neosnippet setting
 imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
