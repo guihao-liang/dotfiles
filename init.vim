@@ -28,7 +28,7 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('Konfekt/FastFold')
     call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
-    call dein#add('scrooloose/syntastic')
+    " call dein#add('scrooloose/syntastic')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neopairs.vim')
@@ -74,6 +74,7 @@ let g:deoplete#min_pattern_length = 3
 " Use tmux-complete
 let g:tmuxcomplete#trigger = ''
 " Python-mode autocompletion conflict with deoplete
+let g:pymode_python = 'python3'
 let g:pymode_rope_completion = 0 
 
 " neosnippet setting
