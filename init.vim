@@ -28,7 +28,7 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('Konfekt/FastFold')
     call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
-    call dein#add('scrooloose/syntastic')
+    " call dein#add('scrooloose/syntastic')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neopairs.vim')
@@ -51,6 +51,9 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
+
+    " git integration
+    call dein#add("airblade/vim-gitgutter")
 
     " Required:
     call dein#end()
@@ -76,7 +79,7 @@ let g:tmuxcomplete#trigger = ''
 " Python-mode autocompletion conflict with deoplete
 let g:pymode_python = 'python3'
 let g:pymode_doc = 0
-set completeopt=menu
+set completeopt=menu " no preview window
 let g:pymode_rope_completion = 0 
 let g:pymode_lint_chekers = ['pep8', 'pyflakes', 'mccabe']
 
