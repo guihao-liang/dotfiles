@@ -74,9 +74,11 @@ let g:deoplete#min_pattern_length = 3
 " Use tmux-complete
 let g:tmuxcomplete#trigger = ''
 " Python-mode autocompletion conflict with deoplete
+let g:pymode_python = 'python3'
+let g:pymode_doc = 0
+set completeopt=menu
 let g:pymode_rope_completion = 0 
-let g:pymode_python='python3'
-let g:pymode_lint_chekers=['pep8', 'pyflakes', 'mccabe']
+let g:pymode_lint_chekers = ['pep8', 'pyflakes', 'mccabe']
 
 " neosnippet setting
 imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
