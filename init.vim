@@ -52,6 +52,9 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
 
+    " git integration
+    call dein#add("airblade/vim-gitgutter")
+
     " Required:
     call dein#end()
     call dein#save_state()
