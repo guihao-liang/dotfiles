@@ -27,7 +27,6 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('bling/vim-airline')
     call dein#add('christoomey/vim-tmux-navigator')
     call dein#add('Konfekt/FastFold')
-    call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
     " call dein#add('scrooloose/syntastic')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
@@ -51,6 +50,10 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
+
+    " file navigation
+    call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
+    call dein#add('ctrlpvim/ctrlp.vim')
 
     " git integration
     call dein#add("airblade/vim-gitgutter")
@@ -111,11 +114,17 @@ set number linebreak
 " fold the code
 set foldmethod=syntax
 set colorcolumn=81
+
+let mapleader = '-'
 " Navigation
 nnoremap <Leader>e :NERDTreeToggle<cr>
 nnoremap <Leader>f :Files<cr>
 nnoremap <Leader>g :grep<space>
 nnoremap <Leader>b :Buffers<cr>
+
+" vimrc
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 
 " practical vim
 " filepath of active buffer but removing the filename.
@@ -124,3 +133,12 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' :'%%'
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" ag and ctrlp
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
