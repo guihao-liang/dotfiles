@@ -49,6 +49,7 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('fatih/vim-go', { 'on_ft': 'go'})
     call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
+    call dein#add('zchee/deoplete-clang', { 'on_ft': 'cpp' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
 
     " file navigation
@@ -85,8 +86,14 @@ let g:pymode_doc = 0
 set completeopt=menu " no preview window
 let g:pymode_rope_completion = 0 
 let g:pymode_lint_chekers = ['pep8', 'pyflakes', 'mccabe']
+" deoplete-clang
+let g:deoplete#sources#clang#std#cpp = 'c++14'
+if has('unix')
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+endif
 
-" neosnippet setting
+" neosnippet setting. intentional recursive mapping here
 imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 imap <C-f>  <Plug>(neosnippet_expand_or_jump)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
