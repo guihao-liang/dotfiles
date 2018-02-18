@@ -144,7 +144,15 @@ alias bashrc='vim $HOME/.bashrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
 alias tm="tmux -2"
 alias tmat='tmux attach -t'
-alias tmns='tmux new -s'
+
+function tmns() {
+    if [ $# -ne 1 ]; then
+        echo "only one argument is accepted"
+    else
+        tmux new -s "$1" -n "$1"
+    fi
+}
+
 # emacs no window server
 alias em="emcas -nw"
 # short for make, mk is already taken
@@ -160,6 +168,10 @@ alias vi='nvim'
 # vim
 alias vr='vi -m' 
 alias ve='vi -x'
+# g++
+alias g11='g++ -std=c++11'
+alias g14='g++ -std=c++14'
+alias g17='g++ -std=c++17'
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K

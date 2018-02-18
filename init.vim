@@ -141,6 +141,11 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' :'%%'
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+" ctrlp MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_working_path_mode = 'ra'
+
 " ag and ctrlp
 if executable('ag')
   " Use Ag over Grep
@@ -149,3 +154,14 @@ if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" guihaol customization
+let mapleader = '-'
+" edit .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" source .vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+inoremap jk <esc>
+
+iabbrev @@ guihaol@zillowgroup.com
