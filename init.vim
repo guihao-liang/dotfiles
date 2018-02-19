@@ -37,6 +37,7 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('tpope/vim-sensible')
     call dein#add('tpope/vim-repeat')
     call dein#add('tpope/vim-surround')
+    call dein#add('tpope/vim-projectionist')
     call dein#add('wellle/tmux-complete.vim')
 
     " code snippets
@@ -140,6 +141,10 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' :'%%'
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" terminal mode
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
 
 " ctrlp MacOSX/Linux
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc
