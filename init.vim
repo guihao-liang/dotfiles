@@ -89,7 +89,10 @@ let g:pymode_rope_completion = 0
 let g:pymode_lint_chekers = ['pep8', 'pyflakes', 'mccabe']
 " deoplete-clang
 let g:deoplete#sources#clang#std#cpp = 'c++14'
-if has('unix')
+if has('macunix')
+    let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/5.0.1/lib/libclang.dylib'
+    let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/5.0.1/lib/clang'
+elseif has('unix')
     let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 endif
