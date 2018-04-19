@@ -100,6 +100,7 @@ hi CursorLine cterm=underline gui=underline " ctermfg=White
 " Search settings
 set hlsearch " highlight all matches of a search
 set incsearch " searches as you type
+set smartcase
 
 " Set encryption method
 " set cm=blowfish2

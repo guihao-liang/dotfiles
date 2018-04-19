@@ -104,7 +104,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " Searching
-set ignorecase
+set smartcase
 set showmatch
 set hlsearch " highlight all matches of a search
 set incsearch " searches as you type
