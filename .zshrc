@@ -160,6 +160,8 @@ alias vi='nvim'
 # vim
 alias vr='vi -m' 
 alias ve='vi -x'
+# ssh
+alias sg='ssh gui2'
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
@@ -167,6 +169,7 @@ set -K
 ################## ENVIRONMENT ################## 
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
+export ML_PATH="$HOME/ml"
 
 # my mac
 if [[ $USER == "GuihaoLiang" ]]; then
@@ -216,6 +219,9 @@ elif [[ $HOST == "guihaol2" ]]; then
 	export PROJECT_HOME=$HOME/hotpot
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 	source /usr/local/bin/virtualenvwrapper.sh
+elif [[ $HOST == "guihaol1" ]]; then
+	export WORKON_HOME=$HOME/.virtualenvs
+    export ENV=$WORKON_HOME
 fi
 ##################  antigen  ###################
 # [[ and [ are different.
@@ -245,9 +251,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 if [[ $OSTYPE == "darwin16.0" ]]; then
 	antigen bundle osx
 fi
-#
-# antigen theme robbyrussell
-antigen theme
+antigen theme robbyrussell
 # Tell antigen that you're done.
 antigen apply
 
