@@ -179,6 +179,8 @@ alias g17='g++ -std=c++17'
 # Disable ! extension on history number or !! for previous cmd.
 set -K
 
+ulimit -c unlimited
+
 ################## ENVIRONMENT ################## 
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
