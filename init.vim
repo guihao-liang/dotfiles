@@ -37,6 +37,7 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('tpope/vim-sensible')
     call dein#add('tpope/vim-repeat')
     call dein#add('tpope/vim-surround')
+    call dein#add('tpope/vim-unimpaired')
     call dein#add('tpope/vim-projectionist')
     call dein#add('wellle/tmux-complete.vim')
 
@@ -162,6 +163,10 @@ if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" make
+set makeprg=make\ -j8
+nnoremap <F4> :make!<cr>
 
 " guihaol customization
 let mapleader = '-'
