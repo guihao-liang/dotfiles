@@ -165,7 +165,7 @@ if executable('ag')
 endif
 
 " make
-set makeprg=make\ -j8
+set makeprg=make\ -j8\ $@
 nnoremap <F4> :make!<cr>
 
 " guihaol customization
