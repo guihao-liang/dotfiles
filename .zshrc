@@ -185,12 +185,15 @@ ulimit -c unlimited
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
 export ML_PATH="$HOME/ml"
-export GMOCK_HOME="$HOME/googletest/googlemock"
-export GTEST_HOME="$HOME/googletest/googletest"
+export GMOCK_HOME="$HOME/3rd_party/googletest/googlemock"
+export GTEST_HOME="$HOME/3rd_party/googletest/googletest"
+export GLOG_HOME="$HOME/3rd_party/glog"
+export BOOST_ROOT="$HOME/3rd_party/boost-current"
 
 # my mac
 if [[ $USER == "GuihaoLiang" ]]; then
 	# go lang home dir
+    export BOOST_VERSION="1.67.0"
 	export GOPATH=$HOME/goToWork
 	# homebrew home dir
 	export HOMEBREW=/usr/local/Cellar/
