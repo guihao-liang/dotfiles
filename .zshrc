@@ -185,9 +185,12 @@ ulimit -c unlimited
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
 export ML_PATH="$HOME/ml"
-export GMOCK_HOME="$HOME/3rd_party/googletest/googlemock"
-export GTEST_HOME="$HOME/3rd_party/googletest/googletest"
-export GLOG_HOME="$HOME/3rd_party/glog"
+export GTEST_ROOT="$HOME/3rd_party/gtest"
+export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
+export GTEST_INCLUDE="$GTEST_ROOT/googletest"
+export GMOCK_LINK="$GTEST_ROOT/build/googlemock"
+export GTEST_LINK="$GTEST_ROOT/build/googlemock/gtest"
+export GLOG_ROOT="$HOME/3rd_party/glog"
 export BOOST_ROOT="$HOME/3rd_party/boost-current"
 
 # my mac
