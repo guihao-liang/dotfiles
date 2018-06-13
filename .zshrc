@@ -185,6 +185,8 @@ ulimit -c unlimited
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
 export ML_PATH="$HOME/ml"
+export GMOCK_HOME="$HOME/googletest/googlemock"
+export GTEST_HOME="$HOME/googletest/googletest"
 
 # my mac
 if [[ $USER == "GuihaoLiang" ]]; then

@@ -60,6 +60,7 @@ if dein#load_state($HOME.'/.config/nvim')
 
     " git integration
     call dein#add("airblade/vim-gitgutter")
+    call dein#add("tpope/vim-fugitive")
 
     " Required:
     call dein#end()
