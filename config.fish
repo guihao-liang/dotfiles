@@ -1,10 +1,10 @@
 # created by guihaol on July 28 2018
 #
 ####################### ALIASES #######################
-# alias
+# functions
 # displays directory entries that begin with a dot.
-alias l.='ls -d .*'
-alias ls="ls -F"
+alias l.="ls -dG .*"
+alias ls="ls -GF"
 # git
 alias gs='git status'
 alias gd="git diff"
@@ -109,7 +109,7 @@ if test $USER = "GuihaoLiang"
 	set -gx PROJECT_HOME "$HOME/playground"
 
     # virtualenvwrapper for fish
-    eval (python3 -m virtualfish)
+    # eval (python3 -m virtualfish)
 
 	# TODO: OPAM configuration
 	# . /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null or true
@@ -151,20 +151,9 @@ end
 
 # load .bashrc is there's any. Failed due to incompatibility.
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
-
+#
 ###################### PYENV ########################
-# append pyenv script at last
-if test (uname -s) = 'Linux'
-    set -gx PYENV_ROOT "$HOME/.pyenv"
-    set PATH "$PYENV_ROOT/bin" $PATH
-
-    if test ! -x $PYENV_ROOT/bin/pyenv
-        git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
-    end
-
-    eval (pyenv init -)
-    pyenv virtualenvwrapper
-else if which pyenv > /dev/null
-    #eval (pyenv init -)
-end
+# make sure system has pyton3 and pip3
+# append pyenv script at last, which will add pyenv into path
+set -gx PYENV_ROOT "$HOME/.pyenv"
+status --is-interactive; and . (pyenv init -|psub)
