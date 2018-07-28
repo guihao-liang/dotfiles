@@ -1,0 +1,159 @@
+################## personal config ##################
+# alias
+# displays directory entries that begin with a dot.
+alias l.='ls -d .*'
+alias ls="ls -F"
+# git
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gm="git commit -m"
+alias gc="git checkout"
+alias gpo="git push origin"
+alias gpom="git push -u origin master"
+alias gp="git push"
+#
+# show dirs in current stack.
+#
+alias dirs='dirs -v '
+# activate virtualenv for python development under mkvirtualenv dir.
+# alias activate='source ./bin/activate'
+# show all virsions of certain executable.
+alias which='which -a '
+# use vim that installed by homebrew
+# alias vim='/usr/local/bin/vim '
+# add vertical list for brew
+alias brews='brew list -1'
+# grep
+alias grep='grep --color'
+# change to dotfiles
+alias dot='cd ~/dotfiles'
+# edit .zshrc
+alias zshrc='vim $HOME/.zshrc'
+# edit .vimrc
+alias vimrc='vim $HOME/.vimrc'
+alias nvimrc='nvim $HOME/.config/nvim/init.vim'
+# edit .bashrc
+alias bashrc='vim $HOME/.bashrc'
+# fix the problem that in tmux mode, vim can't find the colorscheme
+alias tm="tmux -2"
+alias tmat='tmux attach -t'
+
+function tmns() {
+    if [ $# -ne 1 ]; then
+        echo "only one argument is accepted"
+    else
+        tmux new -s "$1" -n "$1"
+    fi
+}
+
+# emacs no window server
+alias em="emcas -nw"
+# short for make, mk is already taken
+alias m='make'
+alias m2='make 2> /dev/null'
+alias mc='make clean'
+alias mr='make run'
+alias mt='make test'
+# check background jobs
+alias j="jobs"
+# neo vim
+alias vi='nvim'
+# vim
+alias vr='vi -m' 
+alias ve='vi -x'
+# ssh
+alias sg='ssh gui2'
+# g++
+alias g11='g++ -std=c++11'
+alias g14='g++ -std=c++14'
+alias g17='g++ -std=c++17'
+
+################## ZSH FUNTIONALITY #############
+# Disable ! extension on history number or !! for previous cmd.
+set -K
+
+ulimit -c unlimited
+
+################## ENVIRONMENT ################## 
+# Homebrew required, brew doctor to see more info
+export PATH="/usr/local/sbin:$PATH"
+export ML_PATH="$HOME/ml"
+export GTEST_ROOT="$HOME/3rd_party/gtest"
+export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
+export GTEST_INCLUDE="$GTEST_ROOT/googletest"
+export GMOCK_LINK="$GTEST_ROOT/build/googlemock"
+export GTEST_LINK="$GTEST_ROOT/build/googlemock/gtest"
+export GLOG_ROOT="$HOME/3rd_party/glog"
+export BOOST_ROOT="$HOME/3rd_party/boost-current"
+
+# my mac
+if [[ $USER == "GuihaoLiang" ]]; then
+	# go lang home dir
+    export BOOST_VERSION="1.67.0"
+	export GOPATH=$HOME/goToWork
+	# homebrew home dir
+	export HOMEBREW=/usr/local/Cellar/
+	# java installation dir
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
+	# java leet code location
+	export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
+	# export git=$git/usr/lcoal/Cellar/git/2.6.0/bin/git
+	export WORKON_HOME=$HOME/.virtualenvs
+	# Set up python version.
+	export VIRTUALENV_PYTHON=/usr/local/bin/python3
+	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+	export PROJECT_HOME=$HOME/playground
+	source /usr/local/bin/virtualenvwrapper.sh
+
+	# OPAM configuration
+	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+	# virtualenvwrapper
+	# source virtualenvwrapper.sh
+	# export PROJECT_HOME=~/ENV
+	# export WORKON_HOME=~/ENV
+	export CPP=~/playground/Gui++
+	export PV=~/playground/vim
+
+elif [[ $HOST == "guihaol2" ]]; then
+	# # check whether ssh-agent is started
+	# if [ -z "$ssh_auth_sock" ] ; then
+	# 	eval `ssh-agent -s`
+	# 	ssh-add $home/.ssh/guihaol2_rsa
+	# fi
+	# reuse the same socket
+	# find SSH_AGENT_PID by ps -aux | grep ssh-agent
+	# "ssh-agent -s" is what you want for the socket 
+	if [[ ! -S ~/.ssh/ssh_auth_sock ]]; then
+		eval `ssh-agent -s`
+		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+	fi
+	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+	ssh-add -l > /dev/null || ssh-add ~/.ssh/guihaol2_rsa
+	export JAVA_HOME='/usr/lib/jvm/jdk-8-oracle-x64'
+	export WORKON_HOME=$HOME/.virtualenvs
+	export PROJECT_HOME=$HOME/hotpot
+	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+	source /usr/local/bin/virtualenvwrapper.sh
+elif [[ $HOST == "guihaol1" ]]; then
+	export WORKON_HOME=$HOME/.virtualenvs
+    export ENV=$WORKON_HOME
+fi
+
+# load .bashrc is there's any. Failed due to incompatibility.
+# [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
+
+# append pyenv script at last
+if [ $(uname -s) = 'Linux' ]; then
+    export PYENV_ROOT=$HOME/.pyenv
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    if [ ! -x $PYENV_ROOT/bin/pyenv ]; then
+        git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
+    fi
+    eval "$(pyenv init -)";
+    pyenv virtualenvwrapper
+elif which pyenv > /dev/null; then
+    eval "$(pyenv init -)";
+fi
