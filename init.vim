@@ -53,6 +53,8 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('zchee/deoplete-clang', { 'on_ft': 'cpp' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
+    call dein#add('dag/vim-fish', { 'on_ft': 'fish' })
+
 
     " file navigation
     call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
