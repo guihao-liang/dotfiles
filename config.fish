@@ -135,8 +135,8 @@ else if test (hostname) = "guihaol2"
 		eval (ssh-agent -c)
 		ln -sf $SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
         ssh-add -l > /dev/null; or ssh-add $HOME/.ssh/guihaol2_rsa
-        set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
 	end
+    set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
 	set -gx JAVA_HOME '/usr/lib/jvm/jdk-8-oracle-x64'
 	set -gx WORKON_HOME "$HOME/.virtualenvs"
 	set -gx PROJECT_HOME "$HOME/hotpot"
