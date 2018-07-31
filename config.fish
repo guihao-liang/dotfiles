@@ -79,6 +79,7 @@ function tmns
 end
 
 ################## ENVIRONMENT ################## 
+set -Ux EDITOR nvim
 # Homebrew required, brew doctor to see more info
 # fish list syntax; echo $PATH[1] or $PATH[1..2]
 set PATH "/usr/local/sbin" $PATH
