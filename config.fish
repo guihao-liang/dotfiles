@@ -3,8 +3,7 @@
 ####################### ALIASES #######################
 # functions
 # displays directory entries that begin with a dot.
-alias l.="ls -dG .*"
-alias ls="ls -GF"
+alias l.="ls -d .*"
 # git
 alias gs='git status'
 alias gd="git diff"
@@ -94,6 +93,8 @@ set -x BOOST_ROOT "$HOME/3rd_party/boost-current"
 
 ##################### HOST SPECIFIC SETTINGS #####################
 if test $USER = "GuihaoLiang"
+
+    alias ls="ls -GF"
 	# go lang home dir
     set -gx BOOST_VERSION "1.67.0"
 	set -gx GOPATH "$HOME/goToWork"
@@ -122,7 +123,7 @@ if test $USER = "GuihaoLiang"
 	set -gx PCPP "~/playground/Gui++"
 	set -gx PVIM "~/playground/vim"
 
-else if test $HOST = "guihaol2"
+else if test (hostname) = "guihaol2"
 	# # check whether ssh-agent is started
 	# if [ -z "$ssh_auth_sock" ] ; then
 	# 	eval `ssh-agent -s`
@@ -131,12 +132,12 @@ else if test $HOST = "guihaol2"
 	# reuse the same socket
 	# find SSH_AGENT_PID by ps -aux | grep ssh-agent
 	# "ssh-agent -s" is what you want for the socket 
-	if test ! -S ~/.ssh/ssh_auth_sock
-		eval (ssh-agent -s)
-		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+	if test ! -S $HOME/.ssh/ssh_auth_sock
+		eval (ssh-agent -c)
+		ln -sf $SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
+        ssh-add -l > /dev/null; or ssh-add $HOME/.ssh/guihaol2_rsa
 	end
-	set -x SSH_AUTH_SOCK "~/.ssh/ssh_auth_sock"
-	ssh-add -l > /dev/null or ssh-add ~/.ssh/guihaol2_rsa
+    set -gx SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock"
 	set -gx JAVA_HOME '/usr/lib/jvm/jdk-8-oracle-x64'
 	set -gx WORKON_HOME "$HOME/.virtualenvs"
 	set -gx PROJECT_HOME "$HOME/hotpot"
@@ -144,9 +145,9 @@ else if test $HOST = "guihaol2"
 	# source /usr/local/bin/virtualenvwrapper.sh
     eval (python3 -m virtualfish)
 
-else if test $HOST = "guihaol1"
+else if test (hostname) = "guihaol1"
 	set -gx WORKON_HOME "$HOME/.virtualenvs"
-    set -gx ENV=$WORKON_HOME
+    set -gx ENV $WORKON_HOME
 
 end
 
@@ -157,4 +158,5 @@ end
 # make sure system has pyton3 and pip3
 # append pyenv script at last, which will add pyenv into path
 set -gx PYENV_ROOT "$HOME/.pyenv"
+set -gx PATH "$PYENV_ROOT/bin" $PATH
 status --is-interactive; and . (pyenv init -|psub)
