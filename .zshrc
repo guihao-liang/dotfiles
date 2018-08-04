@@ -145,7 +145,8 @@ alias bashrc='vim $HOME/.bashrc'
 alias tm="tmux -2"
 alias tmat='tmux attach -t'
 
-function tmns() {
+function tmns()
+{
     if [ $# -ne 1 ]; then
         echo "only one argument is accepted"
     else
@@ -210,7 +211,7 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	export VIRTUALENV_PYTHON=/usr/local/bin/python3
 	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 	export PROJECT_HOME=$HOME/playground
-	source /usr/local/bin/virtualenvwrapper.sh
+    source $HOME/.pyenv/versions/3.6.2/bin/virtualenvwrapper.sh
 
 	# OPAM configuration
 	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -250,7 +251,7 @@ fi
 # [[ and [ are different.
 if [[ $OSTYPE == "linux-gnu" ]]; then
 	source /usr/share/zsh-antigen/antigen.zsh 
-elif [[ $OSTYPE == "darwin16.0" ]]; then
+elif [[ $OSTYPE =~ "darwin.*" ]]; then
 	source /usr/local/share/antigen/antigen.zsh
 fi
 # Load the oh-my-zsh's library.
@@ -271,7 +272,7 @@ antigen bundle rupa/z
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 #
-if [[ $OSTYPE == "darwin16.0" ]]; then
+if [[ $OSTYPE =~ "darwin.*" ]]; then
 	antigen bundle osx
 fi
 antigen theme robbyrussell
