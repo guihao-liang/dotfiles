@@ -62,12 +62,19 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='nvim'
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [ ! -z $(which nvim) ]; then
+    export EDITOR='nvim'
+elif [ ! -z $(which vim) ]; then
+    export EDITOR='vim'
+else
+    export EDITOR='vi'
+fi
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -135,24 +142,15 @@ alias grep='grep --color'
 # change to dotfiles
 alias dot='cd ~/dotfiles'
 # edit .zshrc
-alias zshrc='vim $HOME/.zshrc'
+alias zshrc="$EDITOR $HOME/.zshrc"
 # edit .vimrc
-alias vimrc='vim $HOME/.vimrc'
+alias vimrc="$EDITOR $HOME/.vimrc"
 alias nvimrc='nvim $HOME/.config/nvim/init.vim'
 # edit .bashrc
-alias bashrc='vim $HOME/.bashrc'
+alias bashrc="$EDITOR $HOME/.bashrc"
 # fix the problem that in tmux mode, vim can't find the colorscheme
 alias tm="tmux -2"
 alias tmat='tmux attach -t'
-
-function tmns()
-{
-    if [ $# -ne 1 ]; then
-        echo "only one argument is accepted"
-    else
-        tmux new -s "$1" -n "$1"
-    fi
-}
 
 # emacs no window server
 alias em="emcas -nw"
@@ -175,6 +173,39 @@ alias sg='ssh gui2'
 alias g11='g++ -std=c++11'
 alias g14='g++ -std=c++14'
 alias g17='g++ -std=c++17'
+
+################## FUNTIONS #############
+
+function tmns()
+{
+    if [ $# -ne 1 ]; then
+        echo "only one argument is accepted"
+    else
+        tmux new -s "$1" -n "$1"
+    fi
+}
+
+# leet code
+function leet()
+{
+    if [ $# -ne 1 ]; then
+        echo "only one argument is accepted"
+    else
+        echo '#include "commonHeader.hpp"\n' >> "$1"
+        code "$1"
+    fi
+}
+
+function geet()
+{
+    if [ $# -ne 1 ]; then
+        echo "only one argument is accepted"
+    else
+        echo '#include "commonHeader.hpp"\n' >> "$1"
+        git add "$1"
+        code "$1"
+    fi
+}
 
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
