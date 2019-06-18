@@ -185,6 +185,7 @@ ulimit -c unlimited
 ################## ENVIRONMENT ################## 
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 export ML_PATH="$HOME/ml"
 export GTEST_ROOT="$HOME/3rd_party/gtest"
 export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
@@ -283,9 +284,10 @@ antigen apply
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
 
 # append pyenv script at last
+export PYENV_ROOT=$HOME/.pyenv
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 if [ $(uname -s) = 'Linux' ]; then
-    export PYENV_ROOT=$HOME/.pyenv
-    export PATH="$PYENV_ROOT/bin:$PATH"
     if [ ! -x $PYENV_ROOT/bin/pyenv ]; then
         git clone https://github.com/yyuu/pyenv.git ~/.pyenv
         git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
