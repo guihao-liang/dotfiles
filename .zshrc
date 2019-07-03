@@ -186,6 +186,8 @@ ulimit -c unlimited
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+# pip user local installation location
+export PATH=~/.local/bin:$PATH
 export ML_PATH="$HOME/ml"
 export GTEST_ROOT="$HOME/3rd_party/gtest"
 export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"

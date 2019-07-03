@@ -13,15 +13,15 @@ let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
 
 "----------------------------dein Scripts-----------------------------
 " Required:
-set runtimepath+=$HOME/.config/nvim/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state($HOME.'/.config/nvim')
-    call dein#begin($HOME.'/.config/nvim')
+if dein#load_state($HOME.'/.cache/dein')
+    call dein#begin($HOME.'/.cache/dein')
 
     " Let dein manage dein
     " Required:
-    call dein#add($HOME.'/.config/nvim/repos/github.com/Shougo/dein.vim')
+    call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
     " Add or remove plugins here:
     call dein#add('bling/vim-airline')
@@ -94,8 +94,9 @@ let g:pymode_lint_chekers = ['pep8', 'pyflakes', 'mccabe']
 " deoplete-clang
 let g:deoplete#sources#clang#std#cpp = 'c++14'
 if has('macunix')
-    let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/5.0.1/lib/libclang.dylib'
-    let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/5.0.1/lib/clang'
+    " need to make it more intelligent
+    let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+    let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/include'
 elseif has('unix')
     let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
@@ -132,14 +133,10 @@ set colorcolumn=81
 
 let mapleader = '-'
 " Navigation
-nnoremap <Leader>e :NERDTreeToggle<cr>
-nnoremap <Leader>f :Files<cr>
+nnoremap <Leader>n :NERDTreeToggle<cr>
+nnoremap <Leader>f :files<cr>
 nnoremap <Leader>g :grep<space>
-nnoremap <Leader>b :Buffers<cr>
-
-" vimrc
-nnoremap <Leader>sv :source $MYVIMRC<cr>
-nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <Leader>b :buffers<cr>
 
 " practical vim
 " filepath of active buffer but removing the filename.
@@ -165,6 +162,9 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
 endif
 
 " make
