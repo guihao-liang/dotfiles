@@ -48,13 +48,13 @@ if dein#load_state($HOME.'/.cache/dein')
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
     " lang specific
-    call dein#add('fatih/vim-go', { 'on_ft': 'go'})
-    call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
-    call dein#add('zchee/deoplete-clang', { 'on_ft': 'cpp' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
-    call dein#add('dag/vim-fish', { 'on_ft': 'fish' })
-
+    " call dein#add('dag/vim-fish', { 'on_ft': 'fish' })
+    " call dein#add('zchee/deoplete-clang', { 'on_ft': 'cpp' })
+    " call dein#add('fatih/vim-go', { 'on_ft': 'go'})
+    " call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
+    call dein#add('zxqfl/tabnine-vim')
 
     " file navigation
     call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
@@ -122,8 +122,8 @@ hi CursorLine cterm=underline gui=underline " ctermfg=White
 " editor basics
 set backspace=indent,eol,start
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set number linebreak
 
