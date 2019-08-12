@@ -1,5 +1,5 @@
 " echo $HOME."/.vim/colors/moriarty.vim"
-if filereadable($HOME."/.config/nvim/colors/moriarty.vim")
+if filereadable($HOME."/.cache/dein/colors/moriarty.vim")
     colorscheme moriarty
 endif
 
@@ -13,15 +13,15 @@ let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
 
 "----------------------------dein Scripts-----------------------------
 " Required:
-set runtimepath+=$HOME/.config/nvim/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state($HOME.'/.config/nvim')
-    call dein#begin($HOME.'/.config/nvim')
+if dein#load_state($HOME.'/.cache/dein')
+    call dein#begin($HOME.'/.cache/dein')
 
     " Let dein manage dein
     " Required:
-    call dein#add($HOME.'/.config/nvim/repos/github.com/Shougo/dein.vim')
+    call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
     " Add or remove plugins here:
     call dein#add('bling/vim-airline')
