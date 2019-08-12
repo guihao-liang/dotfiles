@@ -202,9 +202,12 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
+# rust settings
+export PATH="$HOME/.cargo/bin:$PATH"
+
 ################ os spefic settings #############
 if [[ $OSTYPE =~ "darwin.*" ]]; then
-elif [[ $OSTYPE == "linux" ]]; then
+elif [[ $OSTYPE =~ "linux.*" ]]; then
 fi
 
 ############# host spefic settings ##############
@@ -305,13 +308,13 @@ antigen apply
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
 
 # append pyenv script at last
-if [[ $(uname -s) = 'Linux' ]]; then
+if [[ $(uname -s) == 'Linux' ]]; then
     if [[ ! -x $PYENV_ROOT/bin/pyenv ]]; then
         git clone https://github.com/yyuu/pyenv.git ~/.pyenv
         git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
     fi
     eval "$(pyenv init -)";
     pyenv virtualenvwrapper
-elif [[ $(which pyenv > /dev/null) ]]; then
+elif [[ $(which pyenv) > /dev/null ]]; then
     eval "$(pyenv init -)";
 fi
