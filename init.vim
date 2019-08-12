@@ -1,5 +1,5 @@
 " echo $HOME."/.vim/colors/moriarty.vim"
-if filereadable($HOME."/.config/nvim/colors/moriarty.vim")
+if filereadable($HOME."/.cache/dein/colors/moriarty.vim")
     colorscheme moriarty
 endif
 
