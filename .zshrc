@@ -133,8 +133,17 @@ alias dirs='dirs -v '
 # alias activate='source ./bin/activate'
 # show all virsions of certain executable.
 alias which='which -a '
-# use vim that installed by homebrew
-# alias vim='/usr/local/bin/vim '
+
+if [[ $(command -v nvim) ]]; then
+    alias vim=nvim
+elif [[ $OSTYPE =~ "darwin.*" ]]; then
+    # use vim that installed by homebrew
+    if [[ ! -x '/usr/local/bin/vim' ]]; then
+        brew install vim
+    fi
+    alias vim='/usr/local/bin/vim '
+fi
+   
 # add vertical list for brew
 alias brews='brew list -1'
 # grep
@@ -216,19 +225,37 @@ ulimit -c unlimited
 ################## ENVIRONMENT ################## 
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
-export ML_PATH="$HOME/ml"
-export GTEST_ROOT="$HOME/3rd_party/gtest"
-export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
-export GTEST_INCLUDE="$GTEST_ROOT/googletest"
-export GMOCK_LINK="$GTEST_ROOT/build/googlemock"
-export GTEST_LINK="$GTEST_ROOT/build/googlemock/gtest"
-export GLOG_ROOT="$HOME/3rd_party/glog"
-export BOOST_ROOT="$HOME/3rd_party/boost-current"
 
-# my mac
-if [[ $USER == "GuihaoLiang" ]]; then
-	# go lang home dir
+# virtualenv settings
+export WORKON_HOME=$HOME/.virtualenvs
+
+# pyenv settings
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# rust settings
+export PATH="$HOME/.cargo/bin:$PATH"
+
+################ os spefic settings #############
+if [[ $OSTYPE =~ "darwin.*" ]]; then
+elif [[ $OSTYPE =~ "linux.*" ]]; then
+fi
+
+############# host spefic settings ##############
+# MY_HOST_ID is exported through .zprofile
+if [[ $MY_HOST_ID == "home-mbp-0" ]]; then
+    export ML_PATH="$HOME/ml"
+    # gtest
+    export GTEST_ROOT="$HOME/3rd_party/gtest"
+    export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
+    export GTEST_INCLUDE="$GTEST_ROOT/googletest"
+    export GMOCK_LINK="$GTEST_ROOT/build/googlemock"
+    export GTEST_LINK="$GTEST_ROOT/build/googlemock/gtest"
+    export GLOG_ROOT="$HOME/3rd_party/glog"
+    # boost
+    export BOOST_ROOT="$HOME/3rd_party/boost-current"
     export BOOST_VERSION="1.67.0"
+	# go lang home dir
 	export GOPATH=$HOME/goToWork
 	# homebrew home dir
 	export HOMEBREW=/usr/local/Cellar/
@@ -236,8 +263,6 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
 	# java leet code location
 	export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
-	# export git=$git/usr/lcoal/Cellar/git/2.6.0/bin/git
-	export WORKON_HOME=$HOME/.virtualenvs
 	# Set up python version.
 	export VIRTUALENV_PYTHON=/usr/local/bin/python3
 	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -254,7 +279,7 @@ if [[ $USER == "GuihaoLiang" ]]; then
 	export CPP=~/playground/Gui++
 	export PV=~/playground/vim
 
-elif [[ $HOST == "guihaol2" ]]; then
+elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
 	# # check whether ssh-agent is started
 	# if [ -z "$ssh_auth_sock" ] ; then
 	# 	eval `ssh-agent -s`
@@ -270,17 +295,16 @@ elif [[ $HOST == "guihaol2" ]]; then
 	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 	ssh-add -l > /dev/null || ssh-add ~/.ssh/guihaol2_rsa
 	export JAVA_HOME='/usr/lib/jvm/jdk-8-oracle-x64'
-	export WORKON_HOME=$HOME/.virtualenvs
 	export PROJECT_HOME=$HOME/hotpot
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 	source /usr/local/bin/virtualenvwrapper.sh
-elif [[ $HOST == "guihaol1" ]]; then
-	export WORKON_HOME=$HOME/.virtualenvs
-    export ENV=$WORKON_HOME
+elif [[ $MY_HOST_ID == "work-mbp-0" ]]; then
+elif [[ $MY_HOST_ID == 'home-mac-mini-0' ]]; then
 fi
+
 ##################  antigen  ###################
 # [[ and [ are different.
-if [[ $OSTYPE == "linux-gnu" ]]; then
+if [[ $OSTYPE =~ "linux.*" ]]; then
 	source /usr/share/zsh-antigen/antigen.zsh 
 elif [[ $OSTYPE =~ "darwin.*" ]]; then
 	source /usr/local/share/antigen/antigen.zsh
@@ -306,6 +330,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 if [[ $OSTYPE =~ "darwin.*" ]]; then
 	antigen bundle osx
 fi
+#
 antigen theme robbyrussell
 # Tell antigen that you're done.
 antigen apply
@@ -314,15 +339,13 @@ antigen apply
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
 
 # append pyenv script at last
-if [ $(uname -s) = 'Linux' ]; then
-    export PYENV_ROOT=$HOME/.pyenv
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    if [ ! -x $PYENV_ROOT/bin/pyenv ]; then
+if [[ $(uname -s) == 'Linux' ]]; then
+    if [[ ! -x $PYENV_ROOT/bin/pyenv ]]; then
         git clone https://github.com/yyuu/pyenv.git ~/.pyenv
         git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
     fi
     eval "$(pyenv init -)";
     pyenv virtualenvwrapper
-elif which pyenv > /dev/null; then
+elif [[ $(which pyenv) > /dev/null ]]; then
     eval "$(pyenv init -)";
 fi
