@@ -48,6 +48,7 @@ if dein#load_state($HOME.'/.config/nvim')
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
     " lang specific
+    call dein#add('rust-lang/rust.vim', {'on_ft':'rust'})
     call dein#add('fatih/vim-go', { 'on_ft': 'go'})
     call dein#add('zchee/deoplete-jedi', {'on_ft': 'python' })
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
@@ -100,6 +101,9 @@ elseif has('unix')
     let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 endif
+
+" rust format
+let g:rustfmt_autosave = 1
 
 " neosnippet setting. intentional recursive mapping here
 imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
