@@ -119,6 +119,7 @@ alias ls="ls -F"
 # git
 alias gs="git status"
 alias gd="git diff"
+alias gdc="git diff --cached"
 alias ga="git add"
 alias gm="git commit -m"
 alias gc="git checkout"
