@@ -1,4 +1,10 @@
+" troubleshooting
+"
+" You will need to call `dein#recache_runtimepath()` after modification. 
+" This also applies to disabling plugins.
+"
 " echo $HOME."/.vim/colors/moriarty.vim"
+
 if filereadable($HOME."/.cache/dein/colors/moriarty.vim")
     colorscheme moriarty
 endif
@@ -31,7 +37,6 @@ if dein#load_state($HOME.'/.cache/dein')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neopairs.vim')
-    call dein#add('Shougo/deoplete.nvim')
     call dein#add('Shougo/context_filetype.vim')
     call dein#add('tpope/vim-commentary')
     call dein#add('tpope/vim-sensible')
@@ -48,6 +53,7 @@ if dein#load_state($HOME.'/.cache/dein')
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
     " lang specific
+    " call dein#add('Shougo/deoplete.nvim') " conflict with tabnine-vim
     call dein#add('rust-lang/rust.vim', {'on_ft':'rust'})
     call dein#add('python-mode/python-mode', { 'on_ft': 'python' })
     call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': 'cpp' })
@@ -94,16 +100,17 @@ let g:pymode_doc = 0
 set completeopt=menu " no preview window
 let g:pymode_rope_completion = 0 
 let g:pymode_lint_chekers = ['pep8', 'pyflakes', 'mccabe']
-" deoplete-clang
-let g:deoplete#sources#clang#std#cpp = 'c++14'
-if has('macunix')
-    " need to make it more intelligent
-    let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-    let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/include'
-elseif has('unix')
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
-    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-endif
+
+" deoplete-clang -> switch to tabnine
+" let g:deoplete#sources#clang#std#cpp = 'c++14'
+" if has('macunix')
+"     " need to make it more intelligent
+"     let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+"     let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/include'
+" elseif has('unix')
+"     let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
+"     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+" endif
 
 " rust format
 let g:rustfmt_autosave = 1
