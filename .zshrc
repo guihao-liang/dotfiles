@@ -62,18 +62,20 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [ ! -z $(which nvim) ]; then
-    export EDITOR='nvim'
-elif [ ! -z $(which vim) ]; then
-    export EDITOR='vim'
-else
-    export EDITOR='vi'
-fi
-
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  if [ ! -z $(which vim) ]; then
+      export EDITOR='vim'
+  else
+      export EDITOR='vi'
+  fi
 else
-  export EDITOR='nvim'
+  if [ ! -z $(which nvim) ]; then
+      export EDITOR='nvim'
+  elif [ ! -z $(which vim) ]; then
+      export EDITOR='vim'
+  else
+      export EDITOR='vi'
+  fi
 fi
 
 # Compilation flags
