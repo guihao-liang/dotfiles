@@ -357,3 +357,4 @@ elif [[ $(which pyenv) > /dev/null ]]; then
       eval "$(pyenv virtualenv-init -)";
     fi
 fi
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
