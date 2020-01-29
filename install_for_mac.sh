@@ -7,18 +7,18 @@ set -eux -o pipefail
 # utils
 
 function check_command_exists {
-  [ $# -eq 1 ] && $(command -v $1 2>&1 > /dev/null)
+  [ $# -eq 1 ] && command -v "$1" > /dev/null 2>&1
 }
 
 function check_if_installed {
-  [ $# -eq 1 ] && $(brew list $1 2>&1 > /dev/null)
+  [ $# -eq 1 ] && brew list "$1"  > /dev/null 2>&1
 }
 
 function brew_install_if_not_exists {
-  for item in $@; do
+  for item in "$@"; do
     if ! check_command_exists "$item" && \
-        ! check_if_installed "$item"; then
-      brew install $item
+        ! check_if_installed "$item" ; then
+      brew install "$item"
     fi
   done
 }
@@ -43,3 +43,9 @@ brew_install_if_not_exists coreutils colordiff htop
 #
 
 brew_install_if_not_exists clang-format
+
+#
+# install Shell Utils
+#
+
+brew_install_if_not_exists shellcheck

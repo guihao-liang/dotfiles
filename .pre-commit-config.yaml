@@ -15,6 +15,12 @@ repos:
   rev: 19.10b0
   hooks:
   - id: black
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 1.11.2
+  hooks:
+    - id: shellcheck
+      args: ["--color=always", "--shell=bash", "-x", "-a", "--exclude=SC1090"]
+      additional_dependencies: [shellcheck]
 # - repo: https://github.com/asottile/reorder_python_imports
 #   rev: v1.9.0
 #   hooks:
@@ -24,9 +30,3 @@ repos:
 #   rev: v1.16.2
 #   hooks:
 #     - id: pyupgrade
-# - repo: https://github.com/jumanjihouse/pre-commit-hooks
-#   rev: 1.11.2
-#   hooks:
-#     - id: shellcheck
-#       args: ["--color=always", "--shell=bash", "-x", "-a", "--exclude=SC1090"]
-#       additional_dependencies: [shellcheck]
