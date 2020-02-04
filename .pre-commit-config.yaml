@@ -4,23 +4,28 @@
 # excludes: regex
 #
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v2.4.0
-  hooks:
-  - id: trailing-whitespace
-  - id: end-of-file-fixer
-  - id: check-yaml
-  - id: check-added-large-files
-- repo: https://github.com/psf/black
-  rev: 19.10b0
-  hooks:
-  - id: black
-- repo: https://github.com/jumanjihouse/pre-commit-hooks
-  rev: 1.11.2
-  hooks:
-    - id: shellcheck
-      args: ["--color=always", "--shell=bash", "-x", "-a", "--exclude=SC1090"]
-      additional_dependencies: [shellcheck]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-yaml
+    - id: check-added-large-files
+    - id: flake8
+  - repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+    - id: black
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 1.11.2
+    hooks:
+      - id: shellcheck
+        args: ["--color=always", "--shell=bash", "-x", "--exclude=SC1090"]
+        additional_dependencies: [shellcheck]
+  - repo: https://github.com/cheshirekow/cmake-format-precommit
+    rev: v0.6.7
+    hooks:
+    - id: cmake-format
 # - repo: https://github.com/asottile/reorder_python_imports
 #   rev: v1.9.0
 #   hooks:

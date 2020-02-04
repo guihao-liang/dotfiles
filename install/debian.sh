@@ -1,9 +1,10 @@
 #!/bin/bash
+set -ex
 
 confirm_install () {
-	read -p "Install $1? [y/n]: " $ans
+	read -p "Install $1? [y/n]: " -r ans
 	if [[ -z $ans || $ans == "y" || $ans == "Y" ]]; then
-		sudo apt-get install $1
+		sudo apt-get install "$1"
 	elif [[ $ans != "N" && $ans != "n" ]]; then
 		echo error input
 		exit 35
@@ -11,9 +12,9 @@ confirm_install () {
 }
 
 confirm_or_exit () {
-	read $ans
+	read -r ans
 	if [[ -n $ans && $ans != "y" && $ans != "Y" ]]; then
-		echo $1 terminated.	
+		echo "$1" terminated.
 		exit 35
 	fi
 }
@@ -28,7 +29,7 @@ echo "preparation:
 step 1: add to sudoers
 su -
 adduser guihaol2 sudo
-logout 
+logout
 groups | grep sudo
 
 step 2: apt list
@@ -63,15 +64,15 @@ sleep 5
 
 # copy & link all configuration files from my repo
 echo adding configuration from my repo
-git clone https://github.com/Jarvi-Izana/dotfiles.git 
+git clone https://github.com/Jarvi-Izana/dotfiles.git
 shopt -s dotglob
-cd $HOME/dotfiles
+cd "$HOME/dotfiles"
 echo "change to $HOME/dotfiles/"
 for f in *
-do 
+do
 	if [[ -f $f && $f =~ ^\.+ && $f != ".bashrc" ]]; then
 		echo "link $f? [Y/N]"
-		read ans
+		read -r ans
 		if [[ -z $ans || $ans == "y" || $ans == "Y" ]]; then
 			if [[ -e $HOME/$f ]]; then
 				rm "$HOME/$f"
@@ -80,13 +81,14 @@ do
 		fi
 	fi
 done
+
 cd -
 
 # tmux
 echo "Installing tmux"
 confirm_or_exit "Adding jessie backports first [Y/N]"
 apt_get_update_upgrade
-read ans
+read -r ans
 if [[ $ans == "n" || $ans == "N" ]]; then
 	echo "Tmux installation terminated."
 	exit 35
@@ -97,13 +99,13 @@ echo "Enter tmux and <prefix>+I to install plugins."
 
 
 # adding AMD/ATI drivers
-echo "\n\nTo make sure your display work well,
+printf "\n\nTo make sure your display work well,
 find out the type of your graphic card first:
-$(lspci -nn | grep VGA)
+%s
 Then search on Debian Wiki to get more help.
 
 For my case, my Debian box uses ATI 7700.
 Add deb http://httpredir.debian.org/debian/ jessie main contrib non-free to /etc/apt/source.list.
 sudo apt-get update && sudo apt-get upgrade.
 apt-get install firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
-"
+" "$(lspci -nn | grep VGA)"
