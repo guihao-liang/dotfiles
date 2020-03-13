@@ -32,6 +32,12 @@ repos:
 #   hooks:
 #   - id: cmake-format
 #
+# - repo: https://github.com/guihao-liang/pre-commit-cpp
+#   rev: master # still WIP, so use the most recent commit
+#   hooks:
+#     - id: check-clang-format
+#       args: ["-i", "--style=google"]
+#
 # python
 #
 # - repo: https://github.com/psf/black
