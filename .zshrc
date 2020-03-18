@@ -95,7 +95,7 @@ fi
 
 ############### syntax-highlighters #################
 # load auto-suggestion and syntax-highlighting will lead to crash
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets) 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
 #
 # To define styles for nested brackets up to level 4
 ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
@@ -146,7 +146,7 @@ elif [[ $OSTYPE =~ "darwin.*" ]]; then
     fi
     alias vim='/usr/local/bin/vim '
 fi
-   
+
 # add vertical list for brew
 alias brews='brew list -1'
 # grep
@@ -177,7 +177,7 @@ alias j="jobs"
 # neo vim
 alias vi='nvim'
 # vim
-alias vr='vi -m' 
+alias vr='vi -m'
 alias ve='vi -x'
 # ssh
 alias sg='ssh gui2'
@@ -225,7 +225,7 @@ set -K
 
 ulimit -c unlimited
 
-################## ENVIRONMENT ################## 
+################## ENVIRONMENT ##################
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
 
@@ -290,7 +290,7 @@ elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
 	# fi
 	# reuse the same socket
 	# find SSH_AGENT_PID by ps -aux | grep ssh-agent
-	# "ssh-agent -s" is what you want for the socket 
+	# "ssh-agent -s" is what you want for the socket
 	if [[ ! -S ~/.ssh/ssh_auth_sock ]]; then
 		eval `ssh-agent -s`
 		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
@@ -308,7 +308,7 @@ fi
 ##################  antigen  ###################
 # [[ and [ are different.
 if [[ $OSTYPE =~ "linux.*" ]]; then
-	source /usr/share/zsh-antigen/antigen.zsh 
+	source /usr/share/zsh-antigen/antigen.zsh
 elif [[ $OSTYPE =~ "darwin.*" ]]; then
 	source /usr/local/share/antigen/antigen.zsh
 fi
@@ -358,3 +358,4 @@ elif [[ $(which pyenv) > /dev/null ]]; then
     fi
 fi
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/opt/binutils/bin:$PATH"
