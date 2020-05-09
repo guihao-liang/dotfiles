@@ -1,3 +1,4 @@
+#! /bin/env bash
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -5,7 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+export ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -56,22 +57,22 @@ export UPDATE_ZSH_DAYS=30
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  if [ ! -z $(which vim) ]; then
+  if [[ -n $(command -v vim) ]]; then
       export EDITOR='vim'
   else
       export EDITOR='vi'
   fi
 else
-  if [ ! -z $(which nvim) ]; then
+  if [[ -n $(command -v nvim) ]]; then
       export EDITOR='nvim'
-  elif [ ! -z $(which vim) ]; then
+  elif [[ -n $(command -v vim) ]]; then
       export EDITOR='vim'
   else
       export EDITOR='vi'
@@ -95,7 +96,7 @@ fi
 
 ############### syntax-highlighters #################
 # load auto-suggestion and syntax-highlighting will lead to crash
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
 #
 # To define styles for nested brackets up to level 4
 ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
@@ -139,7 +140,7 @@ alias which='which -a '
 
 if [[ $(command -v nvim) ]]; then
     alias vim=nvim
-elif [[ $OSTYPE =~ "darwin.*" ]]; then
+elif [[ $OSTYPE =~ darwin.* ]]; then
     # use vim that installed by homebrew
     if [[ ! -x '/usr/local/bin/vim' ]]; then
         brew install vim
@@ -154,12 +155,12 @@ alias grep='grep --color'
 # change to dotfiles
 alias dot='cd ~/dotfiles'
 # edit .zshrc
-alias zshrc="$EDITOR $HOME/.zshrc"
+alias zshrc='$EDITOR $HOME/.zshrc'
 # edit .vimrc
-alias vimrc="$EDITOR $HOME/.vimrc"
+alias vimrc='$EDITOR $HOME/.vimrc'
 alias nvimrc='nvim $HOME/.config/nvim/init.vim'
 # edit .bashrc
-alias bashrc="$EDITOR $HOME/.bashrc"
+alias bashrc='$EDITOR $HOME/.bashrc'
 # fix the problem that in tmux mode, vim can't find the colorscheme
 alias tm="tmux -2"
 alias tmat='tmux attach -t'
@@ -173,7 +174,8 @@ alias mc='make clean'
 alias mr='make run'
 alias mt='make test'
 # check background jobs
-alias j="jobs"
+# conflict with autojump `j`
+# alias j="jobs"
 # neo vim
 alias vi='nvim'
 # vim
@@ -203,7 +205,7 @@ function leet()
     if [ $# -ne 1 ]; then
         echo "only one argument is accepted"
     else
-        echo '#include "commonHeader.hpp"\n' >> "$1"
+        printf '#include "commonHeader.hpp"\n' >> "$1"
         code "$1"
     fi
 }
@@ -213,7 +215,7 @@ function geet()
     if [ $# -ne 1 ]; then
         echo "only one argument is accepted"
     else
-        echo '#include "commonHeader.hpp"\n' >> "$1"
+        printf '#include "commonHeader.hpp"\n' >> "$1"
         git add "$1"
         code "$1"
     fi
@@ -240,8 +242,18 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 ################ os spefic settings #############
-if [[ $OSTYPE =~ "darwin.*" ]]; then
-elif [[ $OSTYPE =~ "linux.*" ]]; then
+if [[ "$OSTYPE" =~ "darwin".* ]]; then
+  function rm() {
+    if [[ $# -gt 0 ]] && [[ $* =~ .*-rf.* ]]; then
+        echo "rm -rf is prohibited. please use trash command"
+        return 1
+    else
+      # shellcheck disable=SC2068
+      safe-rm $@
+    fi
+  }
+elif [[ "$OSTYPE" =~ "linux".* ]]; then
+  true
 fi
 
 ############# host spefic settings ##############
@@ -270,7 +282,7 @@ if [[ $MY_HOST_ID == "home-mbp-0" ]]; then
 	export VIRTUALENV_PYTHON=/usr/local/bin/python3
 	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 	export PROJECT_HOME=$HOME/playground
-    source $HOME/.pyenv/versions/3.6.2/bin/virtualenvwrapper.sh
+    source "$HOME/.pyenv/versions/3.6.2/bin/virtualenvwrapper.sh"
 
 	# OPAM configuration
 	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -292,7 +304,7 @@ elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
 	# find SSH_AGENT_PID by ps -aux | grep ssh-agent
 	# "ssh-agent -s" is what you want for the socket
 	if [[ ! -S ~/.ssh/ssh_auth_sock ]]; then
-		eval `ssh-agent -s`
+    eval "$(ssh-agent -s)"
 		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 	fi
 	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
@@ -302,14 +314,16 @@ elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 	source /usr/local/bin/virtualenvwrapper.sh
 elif [[ $MY_HOST_ID == "work-mbp-0" ]]; then
+  true
 elif [[ $MY_HOST_ID == 'home-mac-mini-0' ]]; then
+  true
 fi
 
 ##################  antigen  ###################
 # [[ and [ are different.
-if [[ $OSTYPE =~ "linux.*" ]]; then
+if [[ $OSTYPE =~ linux.* ]]; then
 	source /usr/share/zsh-antigen/antigen.zsh
-elif [[ $OSTYPE =~ "darwin.*" ]]; then
+elif [[ $OSTYPE =~ darwin.* ]]; then
 	source /usr/local/share/antigen/antigen.zsh
 fi
 # Load the oh-my-zsh's library.
@@ -332,7 +346,7 @@ antigen bundle rupa/z
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 #
-if [[ $OSTYPE =~ "darwin.*" ]]; then
+if [[ $OSTYPE =~ darwin.* ]]; then
 	antigen bundle osx
 fi
 #
@@ -351,9 +365,9 @@ if [[ $(uname -s) == 'Linux' ]]; then
     fi
     eval "$(pyenv init -)";
     pyenv virtualenvwrapper
-elif [[ $(which pyenv) > /dev/null ]]; then
+elif [[ $(command -v pyenv) > /dev/null ]]; then
     eval "$(pyenv init -)";
-    if [[ $(which pyenv-virtualenv-init) > /dev/null ]]; then
+    if [[ $(command -v pyenv-virtualenv-init) > /dev/null ]]; then
       eval "$(pyenv virtualenv-init -)";
     fi
 fi
