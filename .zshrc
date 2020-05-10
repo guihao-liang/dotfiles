@@ -192,33 +192,38 @@ alias g17='g++ -std=c++17'
 
 function tmns()
 {
-    if [ $# -ne 1 ]; then
-        echo "only one argument is accepted"
-    else
-        tmux new -s "$1" -n "$1"
-    fi
+  if [ $# -ne 1 ]; then
+    echo "only one argument is accepted"
+  else
+    tmux new -s "$1" -n "$1"
+  fi
 }
 
 # leet code
 function leet()
 {
-    if [ $# -ne 1 ]; then
-        echo "only one argument is accepted"
-    else
-        printf '#include "commonHeader.hpp"\n' >> "$1"
-        code "$1"
-    fi
+  if [ $# -ne 1 ]; then
+    echo "only one argument is accepted"
+  else
+    printf '#include "commonHeader.hpp"\n' >> "$1"
+    code "$1"
+  fi
 }
 
 function geet()
 {
-    if [ $# -ne 1 ]; then
-        echo "only one argument is accepted"
-    else
-        printf '#include "commonHeader.hpp"\n' >> "$1"
-        git add "$1"
-        code "$1"
-    fi
+  if [ $# -ne 1 ]; then
+    echo "only one argument is accepted"
+  else
+    printf '#include "commonHeader.hpp"\n' >> "$1"
+    git add "$1"
+    code "$1"
+  fi
+}
+
+function bashman()
+{
+  man bash | less -p "^       $1 "
 }
 
 ################## ZSH FUNTIONALITY #############
