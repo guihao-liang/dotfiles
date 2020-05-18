@@ -165,8 +165,6 @@ alias bashrc='$EDITOR $HOME/.bashrc'
 alias tm="tmux -2"
 alias tmat='tmux attach -t'
 
-# emacs no window server
-alias em="emcas -nw"
 # short for make, mk is already taken
 alias m='make'
 alias m2='make 2> /dev/null'
@@ -181,12 +179,14 @@ alias vi='nvim'
 # vim
 alias vr='vi -m'
 alias ve='vi -x'
-# ssh
-alias sg='ssh gui2'
 # g++
 alias g11='g++ -std=c++11'
 alias g14='g++ -std=c++14'
 alias g17='g++ -std=c++17'
+
+if [[ "$OSTYPE" =~ darwin.* ]]; then
+  alias trash=rmtrash
+fi
 
 ################## FUNTIONS #############
 
@@ -247,7 +247,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 ################ os spefic settings #############
-if [[ "$OSTYPE" =~ "darwin".* ]]; then
+if [[ "$OSTYPE" =~ darwin.* ]]; then
   function rm() {
     if [[ $# -gt 0 ]] && [[ $* =~ .*-rf.* ]]; then
         echo "rm -rf is prohibited. please use trash command"
@@ -257,7 +257,7 @@ if [[ "$OSTYPE" =~ "darwin".* ]]; then
       safe-rm $@
     fi
   }
-elif [[ "$OSTYPE" =~ "linux".* ]]; then
+elif [[ "$OSTYPE" =~ linux.* ]]; then
   true
 fi
 
@@ -334,13 +334,15 @@ fi
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 # bundles under oh-my-zsh
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 antigen bundle git
 # antigen bundle tmux
 # antigen bundle tmuxinator
 antigen bundle autojump
 antigen bundle zsh_reload
+antigen bundle rust
+antigen bundle golang
 antigen bundle command-not-found
-antigen bundle gradle
 antigen bundle colored-man-pages
 antigen bundle fancy-ctrl-z
 antigen bundle docker
@@ -350,6 +352,7 @@ antigen bundle docker-compose
 antigen bundle rupa/z
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle esc/conda-zsh-completion
 #
 if [[ $OSTYPE =~ darwin.* ]]; then
 	antigen bundle osx
@@ -378,3 +381,21 @@ elif [[ $(command -v pyenv) > /dev/null ]]; then
 fi
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
+
+
+if [[ $MY_HOST_ID =~ work-.* ]]; then
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/Users/guihaoliang/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+  else
+    if [ -f "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+      . "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+      export PATH="/Users/guihaoliang/opt/miniconda3/bin:$PATH"
+    fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+fi
