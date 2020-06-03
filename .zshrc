@@ -398,4 +398,9 @@ if [[ $MY_HOST_ID =~ work-.* ]]; then
   fi
   unset __conda_setup
   # <<< conda initialize <<<
+
+  conda activate iris-dev
+
+  # setup direnv
+  eval "$(direnv hook zsh)"
 fi
