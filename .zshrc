@@ -379,6 +379,7 @@ elif [[ $(command -v pyenv) > /dev/null ]]; then
       eval "$(pyenv virtualenv-init -)";
     fi
 fi
+
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
 
@@ -401,6 +402,10 @@ if [[ $MY_HOST_ID =~ work-.* ]]; then
 
   conda activate iris-dev
 
+  # setup direnv
+  eval "$(direnv hook zsh)"
+
+elif [[ $MY_HOST_ID = home-mac-mini-0 ]]; then
   # setup direnv
   eval "$(direnv hook zsh)"
 fi
