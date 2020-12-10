@@ -23,7 +23,7 @@ repos:
   rev: 1.11.2
   hooks:
     - id: shellcheck
-      args: ["--color=always", "--shell=bash", "-x"]
+      args: ["--color=always", "--shell=bash"]
       additional_dependencies: [shellcheck]
 #
 # C/C++

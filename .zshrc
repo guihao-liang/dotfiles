@@ -290,6 +290,7 @@ if [[ $MY_HOST_ID == "home-mbp-0" ]]; then
     source "$HOME/.pyenv/versions/3.6.2/bin/virtualenvwrapper.sh"
 
 	# OPAM configuration
+  # shellcheck disable=SC1091
 	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 	# virtualenvwrapper
@@ -317,18 +318,21 @@ elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
 	export JAVA_HOME='/usr/lib/jvm/jdk-8-oracle-x64'
 	export PROJECT_HOME=$HOME/hotpot
 	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+  # shellcheck disable=SC1091
 	source /usr/local/bin/virtualenvwrapper.sh
 elif [[ $MY_HOST_ID == "work-mbp-0" ]]; then
   true
-elif [[ $MY_HOST_ID == 'home-mac-mini-0' ]]; then
+elif [[ $MY_HOST_ID == 'home-mini-0' ]]; then
   true
 fi
 
 ##################  antigen  ###################
 # [[ and [ are different.
 if [[ $OSTYPE =~ linux.* ]]; then
+  # shellcheck disable=SC1091
 	source /usr/share/zsh-antigen/antigen.zsh
 elif [[ $OSTYPE =~ darwin.* ]]; then
+  # shellcheck disable=SC1091
 	source /usr/local/share/antigen/antigen.zsh
 fi
 # Load the oh-my-zsh's library.
@@ -384,28 +388,32 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
 
 
-if [[ $MY_HOST_ID =~ work-.* ]]; then
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/Users/guihaoliang/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/guihaoliang/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# shellcheck disable=SC2181
+if [ $? -eq 0 ]; then
+  eval "$__conda_setup"
+else
+  if [ -f "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+    # shellcheck disable=SC1091
+    . "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh"
   else
-    if [ -f "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-      . "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-      export PATH="/Users/guihaoliang/opt/miniconda3/bin:$PATH"
-    fi
+    export PATH="/Users/guihaoliang/opt/miniconda3/bin:$PATH"
   fi
-  unset __conda_setup
-  # <<< conda initialize <<<
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
+if [[ $MY_HOST_ID =~ work-.* ]]; then
   conda activate iris-dev
 
   # setup direnv
   eval "$(direnv hook zsh)"
 
-elif [[ $MY_HOST_ID = home-mac-mini-0 ]]; then
+elif [[ $MY_HOST_ID == home-mini-0 ]]; then
   # setup direnv
   eval "$(direnv hook zsh)"
+  # java env
+  eval "$(jenv init -)"
 fi
