@@ -20,11 +20,10 @@ repos:
 # shell
 #
 - repo: https://github.com/jumanjihouse/pre-commit-hooks
-  rev: 1.11.2
+  rev: 2.1.5
   hooks:
     - id: shellcheck
       args: ["--color=always", "--shell=bash"]
-      additional_dependencies: [shellcheck]
 #
 # C/C++
 #

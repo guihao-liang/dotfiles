@@ -1,0 +1,26 @@
+[core]
+  pager = delta
+
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  features = decorations side-by-side line-numbers
+  syntax-theme = Monokai Extended
+  whitespace-error-style = 22 reverse
+
+[delta "line-numbers"]
+  line-numbers-left-style = white
+  line-numbers-right-style = white
+  ; line-numbers-plus-style = bold green
+  ; line-numbers-minus-style = bold red
+
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan box ul
+  hunk-header-line-number-style = cyan
+
+[interactive]
+  diffFilter = delta --color-only
