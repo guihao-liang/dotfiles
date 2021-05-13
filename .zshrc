@@ -184,10 +184,6 @@ alias g11='g++ -std=c++11'
 alias g14='g++ -std=c++14'
 alias g17='g++ -std=c++17'
 
-if [[ "$OSTYPE" =~ darwin.* ]]; then
-  alias trash=rmtrash
-fi
-
 ################## FUNTIONS #############
 
 function tmns()
@@ -254,7 +250,7 @@ if [[ "$OSTYPE" =~ darwin.* ]]; then
         return 1
     else
       # shellcheck disable=SC2068
-      safe-rm $@
+      trash-put $@
     fi
   }
 elif [[ "$OSTYPE" =~ linux.* ]]; then
