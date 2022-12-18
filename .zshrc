@@ -185,7 +185,9 @@ alias g14='g++ -std=c++14'
 alias g17='g++ -std=c++17'
 
 if [[ "$OSTYPE" =~ darwin.* ]]; then
-  alias trash=rmtrash
+  # https://github.com/andreafrancia/trash-cli
+  # install through pip
+  alias trash=trash-rm
 fi
 
 ################## FUNTIONS #############
@@ -240,8 +242,8 @@ export PATH="/usr/local/sbin:$PATH"
 export WORKON_HOME=$HOME/.virtualenvs
 
 # pyenv settings
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
 
 # rust settings
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -291,7 +293,7 @@ if [[ $MY_HOST_ID == "home-mbp-0" ]]; then
 
 	# OPAM configuration
   # shellcheck disable=SC1091
-	. /Users/guihaoliang/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+  [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 	# virtualenvwrapper
 	# source virtualenvwrapper.sh
@@ -323,7 +325,8 @@ elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
 elif [[ $MY_HOST_ID == "work-mbp-0" ]]; then
   true
 elif [[ $MY_HOST_ID == 'home-mini-0' ]]; then
-  true
+  # ocaml for w4119-2016f
+  [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 fi
 
 ##################  antigen  ###################
@@ -369,23 +372,14 @@ antigen apply
 # load .bashrc is there's any. Failed due to incompatibility.
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
 
-# append pyenv script at last
-if [[ $(uname -s) == 'Linux' ]]; then
-    if [[ ! -x $PYENV_ROOT/bin/pyenv ]]; then
-        git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-        git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
-    fi
-    eval "$(pyenv init -)";
-    pyenv virtualenvwrapper
-elif [[ $(command -v pyenv) > /dev/null ]]; then
-    eval "$(pyenv init -)";
-    if [[ $(command -v pyenv-virtualenv-init) > /dev/null ]]; then
-      eval "$(pyenv virtualenv-init -)";
-    fi
-fi
-
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-export PATH="/usr/local/opt/binutils/bin:$PATH"
+
+# https://github.com/ocaml/opam-repository/issues/21311
+# because Apple's CLT provides the same tools, it might mess up the build
+# turn below on-the-fly when you need gnu-tool chain (ar, ranlib...) to
+# override apple's toolchains.
+# export PATH="/usr/local/opt/binutils/bin:$PATH"
+# in brew 3.9.4+, `brew link binutils` would fail
 
 
 # >>> conda initialize >>>
