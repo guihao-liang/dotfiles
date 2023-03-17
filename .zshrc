@@ -231,6 +231,8 @@ ulimit -c unlimited
 ################## ENVIRONMENT ##################
 # Homebrew required, brew doctor to see more info
 export PATH="/usr/local/sbin:$PATH"
+# new homebrew place
+# export PATH="/opt/homebrew/bin:$PATH"
 
 # virtualenv settings
 export WORKON_HOME=$HOME/.virtualenvs
@@ -329,24 +331,26 @@ if [[ $OSTYPE =~ linux.* ]]; then
 	source /usr/share/zsh-antigen/antigen.zsh
 elif [[ $OSTYPE =~ darwin.* ]]; then
   # shellcheck disable=SC1091
-	source /usr/local/share/antigen/antigen.zsh
+	source /opt/homebrew/share/antigen/antigen.zsh
 fi
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 # bundles under oh-my-zsh
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
-antigen bundle git
-# antigen bundle tmux
-# antigen bundle tmuxinator
+# antigen bundle git
+antigen bundle tmux
+antigen bundle tmuxinator
+#
 antigen bundle autojump
-antigen bundle zsh_reload
-antigen bundle rust
-antigen bundle golang
+# antigen bundle zsh_reload
+# antigen bundle rust
+# antigen bundle golang
 antigen bundle command-not-found
 antigen bundle colored-man-pages
 antigen bundle fancy-ctrl-z
-antigen bundle docker
-antigen bundle docker-compose
+# antigen bundle docker
+# antigen bundle docker-compose
+#
 # antigen bundle common-aliases # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/common-aliases/common-aliases.plugin.zsh
 # third party
 antigen bundle rupa/z
@@ -355,7 +359,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle esc/conda-zsh-completion
 #
 if [[ $OSTYPE =~ darwin.* ]]; then
-	antigen bundle osx
+	# antigen bundle osx
 fi
 #
 antigen theme robbyrussell
@@ -386,17 +390,15 @@ export PATH="/usr/local/opt/binutils/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/guihaoliang/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# shellcheck disable=SC2181
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-  eval "$__conda_setup"
+    eval "$__conda_setup"
 else
-  if [ -f "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-    # shellcheck disable=SC1091
-    . "/Users/guihaoliang/opt/miniconda3/etc/profile.d/conda.sh"
-  else
-    export PATH="/Users/guihaoliang/opt/miniconda3/bin:$PATH"
-  fi
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
