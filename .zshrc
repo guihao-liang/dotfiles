@@ -115,7 +115,7 @@ ZSH_HIGHLIGHT_STYLES[globbing]='none'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 
 ################## personal config ##################
-# alias
+#
 # displays directory entries that begin with a dot.
 alias l.='ls -d .*'
 alias ls="ls -F"
@@ -141,11 +141,12 @@ alias which='which -a '
 if [[ $(command -v nvim) ]]; then
     alias vim=nvim
 elif [[ $OSTYPE =~ darwin.* ]]; then
+    # TODO:
     # use vim that installed by homebrew
-    if [[ ! -x '/usr/local/bin/vim' ]]; then
+    if [[ ! $(command -v vim) ]]; then
         brew install vim
+        alias vim="$(brew --prefix)"/bin/vim
     fi
-    alias vim='/usr/local/bin/vim '
 fi
 
 # add vertical list for brew
@@ -326,15 +327,8 @@ elif [[ $MY_HOST_ID == 'home-mini-0' ]]; then
   [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 fi
 
-##################  antigen  ###################
-# [[ and [ are different.
-if [[ $OSTYPE =~ linux.* ]]; then
-  # shellcheck disable=SC1091
-	source /usr/share/zsh-antigen/antigen.zsh
-elif [[ $OSTYPE =~ darwin.* ]]; then
-  # shellcheck disable=SC1091
-	source /opt/homebrew/share/antigen/antigen.zsh
-fi
+##################  antigen start  ###################
+#
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 # bundles under oh-my-zsh
@@ -360,26 +354,22 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle esc/conda-zsh-completion
 #
-if [[ $OSTYPE =~ darwin.* ]]; then
-	# antigen bundle osx
-fi
-#
 antigen theme robbyrussell
 # Tell antigen that you're done.
 antigen apply
 
 # load .bashrc is there's any. Failed due to incompatibility.
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
+#
+##################  antigen end  ###################
 
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-
 # https://github.com/ocaml/opam-repository/issues/21311
 # because Apple's CLT provides the same tools, it might mess up the build
 # turn below on-the-fly when you need gnu-tool chain (ar, ranlib...) to
 # override apple's toolchains.
 # export PATH="/usr/local/opt/binutils/bin:$PATH"
 # in brew 3.9.4+, `brew link binutils` would fail
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -407,4 +397,8 @@ elif [[ $MY_HOST_ID == home-mini-0 ]]; then
   eval "$(direnv hook zsh)"
   # java env
   eval "$(jenv init -)"
+
+elif [[ $MY_HOST_ID == home-mac-studio ]]; then
+  # setup direnv
+  eval "$(direnv hook zsh)"
 fi
