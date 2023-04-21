@@ -1,0 +1,66 @@
+#! /bin/env bash
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/guihaoliang/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/guihaoliang/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/guihaoliang/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/guihaoliang/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+## for home-mini-0
+# ocaml for w4119-2016f
+[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+if [[ $MY_HOST_ID == "home-mbp-0" ]]; then
+    export ML_PATH="$HOME/ml"
+    # gtest
+    export GTEST_ROOT="$HOME/3rd_party/gtest"
+    export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
+    export GTEST_INCLUDE="$GTEST_ROOT/googletest"
+    export GMOCK_LINK="$GTEST_ROOT/build/googlemock"
+    export GTEST_LINK="$GTEST_ROOT/build/googlemock/gtest"
+    export GLOG_ROOT="$HOME/3rd_party/glog"
+    # boost
+    export BOOST_ROOT="$HOME/3rd_party/boost-current"
+    export BOOST_VERSION="1.67.0"
+	# go lang home dir
+	export GOPATH=$HOME/goToWork
+	# homebrew home dir
+	export HOMEBREW=/usr/local/Cellar/
+	# java installation dir
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
+	# java leet code location
+	export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
+	# Set up python version.
+	export VIRTUALENV_PYTHON=/usr/local/bin/python3
+	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+	export PROJECT_HOME=$HOME/playground
+    source "$HOME/.pyenv/versions/3.6.2/bin/virtualenvwrapper.sh"
+
+	# OPAM configuration
+    # shellcheck disable=SC1091
+    [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+	# virtualenvwrapper
+	# source virtualenvwrapper.sh
+	# export PROJECT_HOME=~/ENV
+	# export WORKON_HOME=~/ENV
+	export CPP=~/playground/Gui++
+	export PV=~/playground/vim
+
+elif [[ $MY_HOST_ID == "home-mini-0" ]]; then
+    # setup direnv
+    eval "$(direnv hook zsh)"
+    # java env
+    eval "$(jenv init -)"
+    # ocaml for w4119-2016f
+    [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+fi

@@ -52,12 +52,37 @@ export UPDATE_ZSH_DAYS=30
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(autojump)
 
-# User configuration
+source "$ZSH/oh-my-zsh.sh"
+
+################### User configuration ######################
+
+############### syntax-highlighters beg #################
+
+# load auto-suggestion and syntax-highlighting will lead to crash
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
+#
+# To define styles for nested brackets up to level 4
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=red,bold'
+#
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[function]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=red,bold'
+# To disable highlighting of globbing expressions
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+
+############### syntax-highlighters end #################
+
+################## personal config ##################
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source "$ZSH/oh-my-zsh.sh"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -94,27 +119,6 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-############### syntax-highlighters #################
-# load auto-suggestion and syntax-highlighting will lead to crash
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
-#
-# To define styles for nested brackets up to level 4
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=red,bold'
-#
-# Declare the variable
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[function]='fg=white,bold'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=white,bold'
-ZSH_HIGHLIGHT_STYLES[command]='fg=red,bold'
-# To disable highlighting of globbing expressions
-ZSH_HIGHLIGHT_STYLES[globbing]='none'
-# To differentiate aliases from other command types
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-
-################## personal config ##################
 #
 # displays directory entries that begin with a dot.
 alias l.='ls -d .*'
@@ -140,13 +144,6 @@ alias which='which -a '
 
 if [[ $(command -v nvim) ]]; then
     alias vim=nvim
-elif [[ $OSTYPE =~ darwin.* ]]; then
-    # TODO:
-    # use vim that installed by homebrew
-    if [[ ! $(command -v vim) ]]; then
-        brew install vim
-        alias vim="$(brew --prefix)"/bin/vim
-    fi
 fi
 
 # add vertical list for brew
@@ -227,7 +224,6 @@ function bashman()
 ################## ZSH FUNTIONALITY #############
 # Disable ! extension on history number or !! for previous cmd.
 set -K
-
 ulimit -c unlimited
 
 ################## ENVIRONMENT ##################
@@ -237,7 +233,7 @@ export PATH="/usr/local/sbin:$PATH"
 # export PATH="/opt/homebrew/bin:$PATH"
 
 # virtualenv settings
-export WORKON_HOME=$HOME/.virtualenvs
+# export WORKON_HOME=$HOME/.virtualenvs
 
 # pyenv settings
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -259,72 +255,6 @@ if [[ "$OSTYPE" =~ darwin.* ]]; then
   }
 elif [[ "$OSTYPE" =~ linux.* ]]; then
   true
-fi
-
-############# host spefic settings ##############
-# MY_HOST_ID is exported through .zprofile
-if [[ $MY_HOST_ID == "home-mbp-0" ]]; then
-    export ML_PATH="$HOME/ml"
-    # gtest
-    export GTEST_ROOT="$HOME/3rd_party/gtest"
-    export GMOCK_INCLUDE="$GTEST_ROOT/googlemock"
-    export GTEST_INCLUDE="$GTEST_ROOT/googletest"
-    export GMOCK_LINK="$GTEST_ROOT/build/googlemock"
-    export GTEST_LINK="$GTEST_ROOT/build/googlemock/gtest"
-    export GLOG_ROOT="$HOME/3rd_party/glog"
-    # boost
-    export BOOST_ROOT="$HOME/3rd_party/boost-current"
-    export BOOST_VERSION="1.67.0"
-	# go lang home dir
-	export GOPATH=$HOME/goToWork
-	# homebrew home dir
-	export HOMEBREW=/usr/local/Cellar/
-	# java installation dir
-	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
-	# java leet code location
-	export JAVA_LEET=$HOME/IdeaProjects/leetcode.java/src/com/company
-	# Set up python version.
-	export VIRTUALENV_PYTHON=/usr/local/bin/python3
-	export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-	export PROJECT_HOME=$HOME/playground
-    source "$HOME/.pyenv/versions/3.6.2/bin/virtualenvwrapper.sh"
-
-	# OPAM configuration
-  # shellcheck disable=SC1091
-  [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-	# virtualenvwrapper
-	# source virtualenvwrapper.sh
-	# export PROJECT_HOME=~/ENV
-	# export WORKON_HOME=~/ENV
-	export CPP=~/playground/Gui++
-	export PV=~/playground/vim
-
-elif [[ $MY_HOST_ID == "work-linux-0" ]]; then
-	# # check whether ssh-agent is started
-	# if [ -z "$ssh_auth_sock" ] ; then
-	# 	eval `ssh-agent -s`
-	# 	ssh-add $home/.ssh/guihaol2_rsa
-	# fi
-	# reuse the same socket
-	# find SSH_AGENT_PID by ps -aux | grep ssh-agent
-	# "ssh-agent -s" is what you want for the socket
-	if [[ ! -S ~/.ssh/ssh_auth_sock ]]; then
-    eval "$(ssh-agent -s)"
-		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-	fi
-	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-	ssh-add -l > /dev/null || ssh-add ~/.ssh/guihaol2_rsa
-	export JAVA_HOME='/usr/lib/jvm/jdk-8-oracle-x64'
-	export PROJECT_HOME=$HOME/hotpot
-	export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
-  # shellcheck disable=SC1091
-	source /usr/local/bin/virtualenvwrapper.sh
-elif [[ $MY_HOST_ID == "work-mbp-0" ]]; then
-  true
-elif [[ $MY_HOST_ID == 'home-mini-0' ]]; then
-  # ocaml for w4119-2016f
-  [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 fi
 
 ##################  antigen start  ###################
@@ -370,35 +300,3 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 # override apple's toolchains.
 # export PATH="/usr/local/opt/binutils/bin:$PATH"
 # in brew 3.9.4+, `brew link binutils` would fail
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-if [[ $MY_HOST_ID =~ work-.* ]]; then
-  conda activate iris-dev
-
-  # setup direnv
-  eval "$(direnv hook zsh)"
-
-elif [[ $MY_HOST_ID == home-mini-0 ]]; then
-  # setup direnv
-  eval "$(direnv hook zsh)"
-  # java env
-  eval "$(jenv init -)"
-
-elif [[ $MY_HOST_ID == home-mac-studio ]]; then
-  # setup direnv
-  eval "$(direnv hook zsh)"
-fi

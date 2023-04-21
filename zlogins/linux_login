@@ -1,0 +1,23 @@
+#! /bin/env bash
+#
+# example zlogin setting for linux system
+
+# # check whether ssh-agent is started
+# if [ -z "$ssh_auth_sock" ] ; then
+# 	eval `ssh-agent -s`
+# 	ssh-add $home/.ssh/guihaol2_rsa
+# fi
+# reuse the same socket
+# find SSH_AGENT_PID by ps -aux | grep ssh-agent
+# "ssh-agent -s" is what you want for the socket
+if [[ ! -S ~/.ssh/ssh_auth_sock ]]; then
+eval "$(ssh-agent -s)"
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || ssh-add ~/.ssh/guihaol2_rsa
+export JAVA_HOME='/usr/lib/jvm/jdk-8-oracle-x64'
+export PROJECT_HOME=$HOME/hotpot
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+# shellcheck disable=SC1091
+source /usr/local/bin/virtualenvwrapper.sh
