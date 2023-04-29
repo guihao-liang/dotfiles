@@ -56,29 +56,6 @@ source "$ZSH/oh-my-zsh.sh"
 
 ################### User configuration ######################
 
-############### syntax-highlighters beg #################
-
-# load auto-suggestion and syntax-highlighting will lead to crash
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
-#
-# To define styles for nested brackets up to level 4
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=red,bold'
-#
-# Declare the variable
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[function]='fg=white,bold'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=white,bold'
-ZSH_HIGHLIGHT_STYLES[command]='fg=red,bold'
-# To disable highlighting of globbing expressions
-ZSH_HIGHLIGHT_STYLES[globbing]='none'
-# To differentiate aliases from other command types
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-
-############### syntax-highlighters end #################
-
 ################## personal config ##################
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
@@ -118,7 +95,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#
 #
 # displays directory entries that begin with a dot.
 alias l.='ls -d .*'
@@ -250,7 +227,7 @@ if [[ "$OSTYPE" =~ darwin.* ]]; then
         return 1
     else
       # shellcheck disable=SC2068
-      trash-put $@
+      trash $@
     fi
   }
 elif [[ "$OSTYPE" =~ linux.* ]]; then
@@ -292,6 +269,30 @@ antigen apply
 # [[ -e ~/.bashrc ]] && emulate sh -c 'source ~/.bashrc'
 #
 ##################  antigen end  ###################
+
+############### syntax-highlighters beg #################
+
+# load auto-suggestion and syntax-highlighting will lead to crash
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main root brackets)
+#
+# To define styles for nested brackets up to level 4
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=red,bold'
+#
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[function]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=white,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=red,bold'
+# To disable highlighting of globbing expressions
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+
+############### syntax-highlighters end #################
+
 
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 # https://github.com/ocaml/opam-repository/issues/21311
